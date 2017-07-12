@@ -1,0 +1,38 @@
+<div id="questionWrapper">
+	<div class="col s12 m7 container-width margin-auto">
+		<h5 class="header">Question Number #?</h5>
+		<div class="card horizontal">
+<!-- 			<div class="card-image">
+				<img src="http://nodeframework.com/assets/img/js.png">
+			</div> -->
+			<div class="card-stacked">
+			<div>
+					<div class="card-content"
+					highlight-js
+					[highlightContent]="question.body">
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div id="answersWrapper">
+		<div class="row" (click)="answer($event)">
+			<div class="col s3 m3"
+			*ngFor="let answer of question.answers"
+
+			>
+			<div class="card-panel teal">
+				<span class="white-text"
+				[attr.data-answer-id]="answer.id"
+				[attr.data-question-id]="question.id">
+				{{answer.body}}
+			</span>
+		</div>
+	</div>
+</div>
+</div>
+<div id="cardActions">
+	<a class="waves-effect waves-light btn">skip</a>
+</div>
+</div>
+</div>

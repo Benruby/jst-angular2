@@ -1,0 +1,31 @@
+#content {
+	color: white;
+}
+
+.highlightBackground {
+	background-color: #433B44;
+	border-radius: 3px !important;
+}
+
+.varStyle {
+	color: #AF4EBA;
+	font-style: italic;
+	font-weight: bold;
+}
+
+.logStyle {
+	color: #C9B60C;
+	font-style: italic;
+	font-weight: bold;
+}
+
+.functionStyle {
+	color: #AF4EBA;
+	font-style: italic;
+	font-weight: bold;
+}
+
+.commentStyle {
+	color: #828282;
+}
+
