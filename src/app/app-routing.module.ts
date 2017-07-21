@@ -1,11 +1,13 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import {HomeComponent} from "./home/home.component";
+import { GamesComponent } from './games/games.component';
 import { QuestionsComponent } from './questions/questions.component';
 import {ProfileComponent} from "./profile/profile.component";
 import {ForgotpasswordComponent} from "./forgotpassword/forgotpassword.component";
 
 import {AuthGuard} from "./guards/auth.guard";
+import {AnonUserGuard} from "./guards/anon.user.guard";
 
 const routes: Routes = [
 {
@@ -15,7 +17,13 @@ const routes: Routes = [
 },
 {
 	path: 'home',
-	component: HomeComponent
+	component: HomeComponent,
+	canActivate: [AnonUserGuard]
+},
+{
+	path: 'games',
+	component: GamesComponent,
+	canActivate: [AuthGuard]
 },
 {
 	path: 'profile',
@@ -24,8 +32,13 @@ const routes: Routes = [
 },
 {
 	path: 'questions',
+	component: QuestionsComponent
+	// canActivate: [AuthGuard]
+},
+{
+	path: 'questions/:game_name',
 	component: QuestionsComponent,
-	canActivate: [AuthGuard]
+	canActivate: [AnonUserGuard]
 },
 {
 	path: 'forgotpassword',

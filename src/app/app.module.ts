@@ -1,6 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
+import { CoreModule } from './core/core.module';
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
@@ -16,14 +18,22 @@ import { RegisterFormComponent } from './register-form/register-form.component';
 import { FormsModule }   from '@angular/forms';
 import { QuestionsComponent } from './questions/questions.component';
 
-import {AuthService} from "./services/auth/auth.service";
+// import {AuthService} from "./services/auth/auth.service";
 import { QuestionsService } from "./services/questions.service"
+import { GamesService } from './services/games.service';
 import { ProfileComponent } from './profile/profile.component';
 
 import {AuthGuard} from "./guards/auth.guard";
+import {AnonUserGuard} from "./guards/anon.user.guard";
+
 import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.component';
 
 import { JsHighlight } from './directives/highlight/js.highlight.directive';
+import { GamesComponent } from './games/games.component';
+import { FinishedGameDialogComponent } from './dialogs/finished-game-dialog/finished-game-dialog.component';
+import { FinishedGameComponent } from './finished-game/finished-game.component';
+
+import { GameResult } from './interfaces/game-result';
 
 @NgModule({
 	declarations: [
@@ -36,20 +46,26 @@ import { JsHighlight } from './directives/highlight/js.highlight.directive';
 	QuestionsComponent,
 	ProfileComponent,
 	ForgotpasswordComponent,
-	JsHighlight
+	JsHighlight,
+	GamesComponent,
+	FinishedGameDialogComponent,
+	FinishedGameComponent,
 	],
 	imports: [
 	BrowserModule,
 	AppRoutingModule,
 	MaterializeModule,
 	HttpModule,
-	FormsModule
+	FormsModule,
+	CoreModule
 	],
 	providers: [
 	Angular2TokenService,
-	AuthService,
+	// AuthService,
 	QuestionsService,
-	AuthGuard
+	GamesService,
+	AuthGuard,
+	AnonUserGuard
 	],
 	bootstrap: [AppComponent]
 })

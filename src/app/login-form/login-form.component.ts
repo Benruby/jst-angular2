@@ -32,6 +32,7 @@ export class LoginFormComponent implements OnInit {
     this.authService.logInUser(this.signInUser).subscribe(
         res => {
           if(res.status == 200){
+            // this.authService.userData = JSON.parse(res.text()).data;
             this.onFormResult.emit({signedIn: true, res});
           }
         },

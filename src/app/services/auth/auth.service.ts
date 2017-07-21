@@ -1,18 +1,30 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnInit } from '@angular/core';
 import {Angular2TokenService} from "angular2-token";
 import {Subject, Observable} from "rxjs";
 import {Response} from "@angular/http";
+
 
 @Injectable()
 export class AuthService {
 
   userSignedIn$:Subject<boolean> = new Subject();
 
+  userData:any;
+
   constructor(public authService:Angular2TokenService) {
 
     this.authService.validateToken().subscribe(
       res => res.status == 200 ? this.userSignedIn$.next(res.json().success) : this.userSignedIn$.next(false)
       )
+    console.log(this.userData);
+  }
+
+  getUserName() {
+    if (this.authService.currentUserData){
+      this.userData = this.authService.currentUserData;
+      return this.userData.name;
+    }
+    return false;
   }
 
   logOutUser():Observable<Response>{
@@ -38,6 +50,7 @@ export class AuthService {
 
     return this.authService.signIn(signInData).map(
       res => {
+        this.userData = JSON.parse(res.text()).data;
         this.userSignedIn$.next(true);
         return res
       }

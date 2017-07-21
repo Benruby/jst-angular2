@@ -1,19 +1,56 @@
 <div class="row">
 	<div class="mainWrapper col s12 valign-wrapper">
-		<div class="col s12 center-align">
+		<div class="contentGames col s8">
+			<div class="col s12 center-align content-mini full-height bckgcolor-white left-align padding-20">
+<!-- 				<a class="waves-effect waves-light btn-large"
+				[routerLink]="['games']"
+				*ngIf="(authService.userSignedIn$  | async)"
+				>Goto Games !
+			</a>
 			<a class="waves-effect waves-light btn-large"
-			[routerLink]="['questions']"
-			*ngIf="(authService.userSignedIn$  | async)"
-			>Start !
-		</a>
+			[routerLink]="['']"
+			*ngIf="!(authService.userSignedIn$  | async)"
+			(click)="presentAuthDialog()"
+			>Login or Register
+		</a> -->
 
-		<a class="waves-effect waves-light btn-large"
-		[routerLink]="['']"
-		*ngIf="!(authService.userSignedIn$  | async)"
-		(click)="presentAuthDialog()"
-		>Login or Register
-	</a>
+		<div>
+			<div class="card horizontal hover-background standard-bckg-color pointer"
+			*ngFor="let g of games"
+			(click)="startGame(g.name)">
+			<div class="card-image">
+				<img src="https://pbs.twimg.com/profile_images/634644295618658304/UuIqtEJ8.png" alt="" class="image-small">
+			</div>
+			<div class="card-content col s12">
+			<p 
+			class="notif-played"
+			*ngIf="g.user_related"
+			>Played!</p>	
+				<p class="card-title center-align">{{g.name}}</p>
+				<p class="game-description center-align">
+					{{g.description}}
+				</p>
+				<p class="num-of-questions left">Number of Questions:{{g.number_of_questions}}</p>
+			</div>
+		</div>
+	</div>
 </div>
+</div>
+<div class="sideSection col s4">
+	<div class="content-mini content-up col s10 bckgcolor-white right padding-20">
+		<p class="header-small center-align common-color">Welcome to the JavaScript Question Trivia.</p>
+		<p class="common-color">Playing is free, no need to sign up, but if you 
+			want to save your result, sign up easily here.</p>
+		</div>
+
+		<div class="content-mini content-down col s10 bckgcolor-white right">
+			more text !!
+			more text !!more text !!more text !!
+			more text !!more text !!
+			more text !!
+			more text !!more text !! more text !!more text !!more text !! more text !! more text !! more text !!
+		</div>
+	</div>
 </div>
 </div>
 

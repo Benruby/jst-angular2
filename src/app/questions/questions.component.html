@@ -1,12 +1,13 @@
-<div id="questionWrapper">
+<div id="questionWrapper" *ngIf="!showEndGamePage">
 	<div class="col s12 m7 container-width margin-auto">
-		<h5 class="header">Question Number #?</h5>
+		<h5 class="header">
+		Question Number:</h5>
 		<div class="card horizontal">
 <!-- 			<div class="card-image">
 				<img src="http://nodeframework.com/assets/img/js.png">
 			</div> -->
 			<div class="card-stacked">
-			<div>
+				<div>
 					<div class="card-content"
 					highlight-js
 					[highlightContent]="question.body">
@@ -16,23 +17,26 @@
 	</div>
 
 	<div id="answersWrapper">
-		<div class="row" (click)="answer($event)">
+		<div class="row">
 			<div class="col s3 m3"
-			*ngFor="let answer of question.answers"
-
-			>
-			<div class="card-panel teal">
-				<span class="white-text"
-				[attr.data-answer-id]="answer.id"
-				[attr.data-question-id]="question.id">
-				{{answer.body}}
-			</span>
+			*ngFor="let answer of question.answers">
+			<div class="card-panel teal answer-card clickable"
+			(click)="answerQuestion($event)"
+			[attr.data-answer-id]="answer.id"
+			[attr.data-question-id]="question.id">
+				<span class="white-text">
+					{{answer.body}}
+				</span>
+			</div>
 		</div>
 	</div>
-</div>
 </div>
 <div id="cardActions">
 	<a class="waves-effect waves-light btn">skip</a>
 </div>
 </div>
 </div>
+
+<app-finished-game *ngIf="showEndGamePage" [results]="results"></app-finished-game>
+
+<!-- <app-finished-game-dialog #gameFinishedDialog></app-finished-game-dialog> -->

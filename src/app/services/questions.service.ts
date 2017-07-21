@@ -9,7 +9,7 @@ import {
   RouterStateSnapshot,
   CanActivateChild,
   NavigationExtras
-}                           from '@angular/router';
+} from '@angular/router';
 
 import { environment } from '../../environments/environment'
 import 'rxjs/add/operator/toPromise';
@@ -22,7 +22,7 @@ export class QuestionsService {
     public authService:Angular2TokenService) { }
 
   getQuestion():Observable<Response>{
-    return this.authService.get('/games/start_game')
+    return this.authService.get('/games/get_question')
     .map( res => {
       return res;
     });
@@ -35,6 +35,7 @@ export class QuestionsService {
       question_id: questionId,
       answer_id: answerId
     };
+  
 
     return this.authService.get('games/answer_question', {search: requestOptions})
     .toPromise()

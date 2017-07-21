@@ -1,0 +1,26 @@
+ <div class="container">
+ 	<div class="row">
+ 		<div class="finishedGameWrapper">
+ 			<div class="row">
+ 				<h1 class="finishedHeader">the game is finished!</h1>
+ 			</div>
+
+ 			<div class="row">
+ 				<h3>questions: {{results.numOfQuestions}}</h3>	
+ 			</div>
+
+ 			<div class="row">
+ 				<h3>correct answers: {{results.numOfCorrectAnswers}}</h3>	
+ 			</div>
+
+ 			<div class="row">
+ 				<h3>total score: {{results.gameScore}}</h3>	
+ 			</div>
+
+ 			<a class="waves-effect waves-light btn"
+ 			 [routerLink]="['/games']">Back to Games</a>
+ 			<a class="waves-effect waves-light btn"
+ 			[routerLink]="['']">Home Page</a>
+ 		</div>
+ 	</div>
+ </div>
