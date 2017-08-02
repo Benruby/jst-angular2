@@ -15,25 +15,28 @@
 		</a> -->
 
 		<div>
-			<div class="card horizontal hover-background standard-bckg-color pointer"
+			<div class="card horizontal hoverable standard-bckg-color pointer"
 			*ngFor="let g of games"
 			(click)="startGame(g.name)">
 			<div class="card-image">
 				<img src="https://pbs.twimg.com/profile_images/634644295618658304/UuIqtEJ8.png" alt="" class="image-small">
 			</div>
 			<div class="card-content col s12">
-			<p 
-			class="notif-played"
-			*ngIf="g.user_related"
-			>Played!</p>	
+					<p 
+					class="notif-played"
+					*ngIf="g.user_related && 
+					(authService.userData)"
+					>Played!
+					<span class="user-score display-block font-size-12">score: {{g.user_score || 'Not Finished'}}</span>
+				</p>	
 				<p class="card-title center-align">{{g.name}}</p>
-				<p class="game-description center-align">
-					{{g.description}}
-				</p>
-				<p class="num-of-questions left">Number of Questions:{{g.number_of_questions}}</p>
-			</div>
+			<p class="game-description center-align">
+				{{g.description}}
+			</p>
+			<p class="num-of-questions left">Number of Questions:{{g.number_of_questions}}</p>
 		</div>
 	</div>
+</div>
 </div>
 </div>
 <div class="sideSection col s4">
@@ -55,3 +58,4 @@
 </div>
 
 <app-auth-dialog #authDialog ></app-auth-dialog>
+<app-report-bug #reportBugDialog></app-report-bug>

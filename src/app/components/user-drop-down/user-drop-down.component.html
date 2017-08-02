@@ -1,0 +1,21 @@
+<ul
+ 	*ngIf="showUserDropdown"
+	class="user-dropdown-main-wrapper dropdown-box-shadow"
+	(click)="closeDropDown()">
+<li class="dropdown-item"
+    *ngIf="(authService.userData)">
+	<a [routerLink]="['/profile']">
+	Profile</a>
+</li>
+<li class="dropdown-item"
+ 	*ngIf="(authService.userData)">
+	<a [routerLink]="">My Stats - Coming Soon!</a>
+</li>
+<li class="dropdown-item">
+	<a (click)="presentReportBugDialog()">Report an Issue</a>
+</li>
+<li class="dropdown-item"
+ 	*ngIf="(authService.userData)">
+	<a (click)="logoutUser()">Logout</a>
+</li>
+</ul>

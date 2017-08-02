@@ -9,22 +9,22 @@ export class AuthService {
 
   userSignedIn$:Subject<boolean> = new Subject();
 
-  userData:any;
+  public userData:any;
 
   constructor(public authService:Angular2TokenService) {
 
     this.authService.validateToken().subscribe(
       res => res.status == 200 ? this.userSignedIn$.next(res.json().success) : this.userSignedIn$.next(false)
       )
-    console.log(this.userData);
   }
 
   getUserName() {
     if (this.authService.currentUserData){
       this.userData = this.authService.currentUserData;
       return this.userData.name;
+    } else {
+      return this.userData.name;
     }
-    return false;
   }
 
   logOutUser():Observable<Response>{
@@ -32,6 +32,7 @@ export class AuthService {
     return this.authService.signOut().map(
       res => {
         this.userSignedIn$.next(false);
+        this.userData = null;
         return res;
       }
       );
@@ -40,8 +41,9 @@ export class AuthService {
   registerUser(signUpData:  {email:string, password:string, passwordConfirmation:string}):Observable<Response>{
     return this.authService.registerAccount(signUpData).map(
       res => {
+        this.userData = JSON.parse(res.text()).data;
         this.userSignedIn$.next(true);
-        return res
+        return res;
       }
       );
   }
@@ -52,7 +54,7 @@ export class AuthService {
       res => {
         this.userData = JSON.parse(res.text()).data;
         this.userSignedIn$.next(true);
-        return res
+        return res;
       }
       );
 

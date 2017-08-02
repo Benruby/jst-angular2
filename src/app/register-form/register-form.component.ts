@@ -12,7 +12,8 @@ export class RegisterFormComponent implements OnInit {
     name: '',
     email: '',
     password: '',
-    passwordConfirmation: ''
+    passwordConfirmation: '',
+    'g-recaptcha-response': null
   };
 
   @Output() onFormResult = new EventEmitter<any>();
@@ -22,23 +23,30 @@ export class RegisterFormComponent implements OnInit {
   ngOnInit() {}
 
 
-  onSignUpSubmit(){
+  onSignUpSubmit(captchaResponse: string){
+
+    this.signUpUser["g-recaptcha-response"] = captchaResponse;
 
     this.AuthService.registerUser(this.signUpUser).subscribe(
 
-        (res) => {
+      (res) => {
 
-          if (res.status == 200){
-            this.onFormResult.emit({signedUp: true, res})
-          }
-
-        },
-
-        (err) => {
-          console.log(err.json())
-          this.onFormResult.emit({signedUp: false, err})
+        if (res.status == 200){
+          this.onFormResult.emit({signedUp: true, res})
         }
-    )
+
+      },
+
+      (err) => {
+        console.log(err.json())
+        this.onFormResult.emit({signedUp: false, err})
+      }
+      )
 
   }
+
+  // resolvedCaptcha(captchaResponse: string) {
+  //   // console.log(`Resolved captcha with response ${captchaResponse}:`);
+  //   this.signUpUser["g-recaptcha-response"] = captchaResponse;
+  // }
 }

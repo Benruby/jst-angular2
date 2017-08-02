@@ -1,14 +1,14 @@
 <div id="questionWrapper" *ngIf="!showEndGamePage">
 	<div class="col s12 m7 container-width margin-auto">
 		<h5 class="header">
-		Question Number:</h5>
-		<div class="card horizontal">
+			Question Number:</h5>
+			<div class="card horizontal">
 <!-- 			<div class="card-image">
 				<img src="http://nodeframework.com/assets/img/js.png">
 			</div> -->
 			<div class="card-stacked">
 				<div>
-					<div class="card-content"
+					<div class="card-content question-card"
 					highlight-js
 					[highlightContent]="question.body">
 				</div>
@@ -20,22 +20,40 @@
 		<div class="row">
 			<div class="col s3 m3"
 			*ngFor="let answer of question.answers">
-			<div class="card-panel teal answer-card clickable"
-			(click)="answerQuestion($event)"
+			<div class="card-panel teal answer-card clickable hoverable" 
+			[ngClass]="{'disabler' : !enableAnswer}"
+			(click)="enableAnswer && answerQuestion($event)"
 			[attr.data-answer-id]="answer.id"
 			[attr.data-question-id]="question.id">
-				<span class="white-text">
-					{{answer.body}}
-				</span>
-			</div>
+			<span class="white-text card-text">
+				{{answer.body}}
+			</span>
 		</div>
 	</div>
 </div>
-<div id="cardActions">
+</div>
+<!-- <div id="cardActions">
 	<a class="waves-effect waves-light btn">skip</a>
+</div> -->
 </div>
+
+<ul class="collapsible" data-collapsible="accordion">
+	<li [attr.data-question-id]="question.id">
+		<div class="collapsible-header">
+			<div>
+				<i class="material-icons">help</i>Shoe Me The Answer
+				<span class="wrong-answer-notif">Showing the answer will count as a wrong answer.</span>
+			</div>
+		</div>
+		<div class="collapsible-body">
+		<a class="waves-effect waves-light btn right"
+			(click)="nextQuestion()">Next Question</a>
+			<span
+			[innerHtml]="explanation"></span></div>
+		</li>
+	</ul>
 </div>
-</div>
+
 
 <app-finished-game *ngIf="showEndGamePage" [results]="results"></app-finished-game>
 

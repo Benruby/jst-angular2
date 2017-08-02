@@ -9,6 +9,7 @@ import 'rxjs/add/operator/throttleTime';
 import { ActivatedRoute } from '@angular/router';
 import { FinishedGameDialogComponent } from '../dialogs/finished-game-dialog/finished-game-dialog.component';
 import { GameResult } from '../interfaces/game-result';
+declare var $ :any;
 
 @Component({
 	selector: 'app-questions',
@@ -23,12 +24,14 @@ export class QuestionsComponent implements OnInit {
 
 	question: Observable<any> = new Observable();
 	result: any;
+	explanation: any;
 	disabledAnswers: boolean = false;
 	gameName: string;
 	private sub: any;
 	showEndGamePage: boolean = false
-
 	questionCounter: number = 1;
+	collapsible: any;
+	enableAnswer: boolean = true;
 	
 	results: GameResult = {
 		numOfQuestions: 0,
@@ -48,18 +51,27 @@ export class QuestionsComponent implements OnInit {
 		this.getQuestion();
 	}
 
+	ngAfterViewInit() {
+		let self = this;
+		this.collapsible = $('.collapsible').collapsible({
+			onOpen: function(el) { 
+				self.enableAnswer = false;
+				self.markAnswerAsInccorect(el[0].dataset.questionId);
+			 }
+		});
+	}
+
 	getQuestion(){
+		this.enableAnswer = true;
 		return this.questionService.getQuestion()
 		.subscribe(
 			res => {
 
 				if (res.json().message === "finished"){
-					console.log("open modal and redirect");
 					this.results.numOfQuestions = res.json().num_of_questions;
 					this.results.numOfCorrectAnswers = res.json().correct_answers;
 					this.results.gameScore = res.json().score;
 					this.showEndGamePage= true;
-					// this.presentGameFinishedDialog();
 					return;
 				}
 
@@ -75,10 +87,13 @@ export class QuestionsComponent implements OnInit {
 	}
 
 	nextQuestion(){
+		$('.collapsible').collapsible('close', 0);
 		this.getQuestion();
 	}
 
 	answerQuestion(event: any): void {
+
+		$('.collapsible').collapsible('close', 0);
 
 		/*makes sure user can't click multiple time while answering 
 		is in progress*/
@@ -102,6 +117,16 @@ export class QuestionsComponent implements OnInit {
 
 	getQuestionNumber() {
 
+	}
+
+	markAnswerAsInccorect(questionId) {
+		// console.log("showing answer")
+		//  $('.collapsible').collapsible('open', 0);
+		//   $('.collapsible').collapsible('destroy');
+		this.questionService.getQuestionAnswer(questionId)
+		.then(res => {
+			this.explanation = res.json().explanation.answer_explanation;
+		})
 	}
 
 }

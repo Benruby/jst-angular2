@@ -1,4 +1,8 @@
-<app-toolbar></app-toolbar>
+<app-toolbar 
+ close-on-click
+ (closeDropdownOnDocumentClick)="toolBar.closeUserDropdown()"
+ #toolBar
+></app-toolbar>
 
 <div class="container">
   <router-outlet></router-outlet>

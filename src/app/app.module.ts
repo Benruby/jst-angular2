@@ -34,6 +34,13 @@ import { FinishedGameDialogComponent } from './dialogs/finished-game-dialog/fini
 import { FinishedGameComponent } from './finished-game/finished-game.component';
 
 import { GameResult } from './interfaces/game-result';
+import { UserDropDownComponent } from './components/user-drop-down/user-drop-down.component';
+import { CloseOnClickDirective } from './directives/close-on-click/close-on-click.directive';
+import { SubmitQuestionComponent } from './components/submit-question/submit-question.component';
+
+import { RecaptchaNoFormsModule } from 'ng2-recaptcha/ng2-recaptcha.noforms';
+import { ReportBugComponent } from './dialogs/report-bug/report-bug.component';
+import { ReportBugService } from './services/report-bug.service';
 
 @NgModule({
 	declarations: [
@@ -50,6 +57,10 @@ import { GameResult } from './interfaces/game-result';
 	GamesComponent,
 	FinishedGameDialogComponent,
 	FinishedGameComponent,
+	UserDropDownComponent,
+	CloseOnClickDirective,
+	SubmitQuestionComponent,
+	ReportBugComponent,
 	],
 	imports: [
 	BrowserModule,
@@ -57,7 +68,8 @@ import { GameResult } from './interfaces/game-result';
 	MaterializeModule,
 	HttpModule,
 	FormsModule,
-	CoreModule
+	CoreModule,
+	RecaptchaNoFormsModule.forRoot()
 	],
 	providers: [
 	Angular2TokenService,
@@ -65,7 +77,8 @@ import { GameResult } from './interfaces/game-result';
 	QuestionsService,
 	GamesService,
 	AuthGuard,
-	AnonUserGuard
+	AnonUserGuard,
+	ReportBugService
 	],
 	bootstrap: [AppComponent]
 })

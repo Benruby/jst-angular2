@@ -1,21 +1,31 @@
 <div class="col s12 games-wrapper">
  <div class="row">
  	<div class="col s4" *ngFor="let game of games">
- 		<div class="card-panel grey lighten-5 z-depth-1"
-        (click)="startGame(game.name)">
-      <div class="row valign-wrapper">
-        <div class="col s2">
-          <img src="https://pbs.twimg.com/profile_images/634644295618658304/UuIqtEJ8.png" alt="" class="circle responsive-img"> <!-- notice the "circle" class -->
-        </div>
-        <div class="col s10">
-          <span class="black-text">
-          {{game.name}}
-          </span>
-          <span>Number of questions:
-           {{game.number_of_questions}}</span>
-        </div>
-      </div>
+ 		<div class="card-panel grey lighten-5 z-depth-1 postition-relative"
+    (click)="startGame(game.name)">
+    <p 
+    class="notif-played-small"
+    *ngIf="game.user_related && (authService.userData)"
+    >Played!
+    <span class="user-score font-size-12 display-block">score: {{game.user_score || 'Not Finished'}}</span>
+  </p>  
+  <div class="row valign-wrapper min-height">
+
+    <div class="col s2">
+      <img src="https://pbs.twimg.com/profile_images/634644295618658304/UuIqtEJ8.png" alt="" class="circle responsive-img"> <!-- notice the "circle" class -->
     </div>
-  </div>
+    <div class="col s10 min-height postition-relative">
+      <p class="black-text underlined-soft vertical-align-top">
+        {{game.name}}
+      </p>
+      <p class="black-text">
+        {{game.description}}
+      </p>
+      <p class="num-of-questions-small">Number of questions:
+       {{game.number_of_questions}}</p>
+     </div>
+   </div>
  </div>
+</div>
+</div>
 </div>

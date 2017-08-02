@@ -1,0 +1,65 @@
+<div class="modal" materialize="modal" [materializeActions]="modalActions">
+
+	<form #f="ngForm">
+		<div class="modal-content min-height-500">
+
+			<div class="row">
+
+				<div class="row">
+
+					<span class="modal-close right">
+						<i class="fa fa-times" aria-hidden="true"></i>
+					</span>
+				</div>
+
+				<p>Is something wrong or not working as intended? Tell us about it:</p>
+				
+				<div class="input-field col s12">	
+					<input 
+					id="reportBugName"
+					[(ngModel)]="reportData.user_name"
+					name="reportBugName"
+					type="text">
+					<label for="reportBugName">Name</label>
+				</div>
+
+				<div class="input-field col s12">	
+					<input 
+					id="reportBugEmail"
+					[(ngModel)]="reportData.email"
+					name="reportBugEmail"
+					type="email">
+					<label for="reportBugEmail">Email</label>
+				</div>
+
+				<div class="input-field col s12">	
+					<textarea 
+					id="reportBugTextArea" class="materialize-textarea validate"
+					required 
+					[(ngModel)]="reportData.content"
+					name="reportBugTextArea">
+				</textarea>
+				<label for="reportBugTextArea">Describe what happened.</label>
+			</div>
+			<div class="modal-footer">
+				<button href="#!" class="modal-action modal-close waves-effect waves-green btn-flat"
+				type="submit"
+				(click)="captchaRef.execute()"
+				[disabled]="!(f.valid)" 
+				[ngClass]="{'disabled': !(f.valid)}" 
+				>Submit</button>
+
+				<a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">cancel</a>
+			</div>
+
+
+		</div>
+
+	</div>
+</form>
+<recaptcha 
+(resolved)="$event && reportBug($event)" 
+siteKey="6LfbfSsUAAAAAIH0hlftK66MybqJEiGeS-nXgQjj"
+size="invisible"
+#captchaRef="reCaptcha"></recaptcha>
+</div>

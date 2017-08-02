@@ -25,6 +25,7 @@ export class HomeComponent implements OnInit {
 
 	ngOnInit() {
 		this.getGames();
+		console.log("home init")
 	}
 
 	presentAuthDialog(mode: 'login'){

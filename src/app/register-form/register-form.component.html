@@ -1,26 +1,26 @@
-<form (ngSubmit)="onSignUpSubmit()" #f="ngForm" >
+<form #f="ngForm">
 
 
   <div class="row">
 
     <div class="input-field col s12">
       <input id="name"
-             type="text"
-             required
-             name='name'
-             [(ngModel)]="signUpUser.name"
-             class="validate">
+      type="text"
+      required
+      name='name'
+      [(ngModel)]="signUpUser.name"
+      class="validate">
       <label for="name">Nickname</label>
     </div>
 
 
     <div class="input-field col s12">
       <input id="email"
-             type="email"
-             required
-             name='email'
-             [(ngModel)]="signUpUser.email"
-             class="validate">
+      type="email"
+      required
+      name='email'
+      [(ngModel)]="signUpUser.email"
+      class="validate">
       <label for="email">Email</label>
     </div>
 
@@ -28,11 +28,11 @@
 
     <div class="input-field col s12">
       <input id="password"
-             type="password"
-             required
-             name='password'
-             [(ngModel)]="signUpUser.password"
-             class="validate">
+      type="password"
+      required
+      name='password'
+      [(ngModel)]="signUpUser.password"
+      class="validate">
       <label for="password">Password</label>
     </div>
 
@@ -40,31 +40,37 @@
 
     <div class="input-field col s12">
       <input id="password_confirmation"
-             type="password"
-             required
-             name='password_confirmation'
-             [(ngModel)]="signUpUser.passwordConfirmation"
-             class="validate">
+      type="password"
+      required
+      name='password_confirmation'
+      [(ngModel)]="signUpUser.passwordConfirmation"
+      class="validate">
       <label for="password_confirmation">Password confirmation</label>
     </div>
 
     <span *ngIf="signUpUser.password != signUpUser.passwordConfirmation"
-          style="color:red">
-      Passwords must match
-    </span>
+    style="color:red">
+    Passwords must match
+  </span>
 
+  <recaptcha 
+  (resolved)="$event && onSignUpSubmit($event)" siteKey="6LfbfSsUAAAAAIH0hlftK66MybqJEiGeS-nXgQjj"
+  size="invisible"
+  #captchaRef="reCaptcha"></recaptcha>
 
-    <div class="col s12">
+  <div class="col s12">
 
-      <button type="submit"
-              [disabled]="!(f.valid) || !(signUpUser.password == signUpUser.passwordConfirmation)"
-              class="waves-effect waves-light btn blue right">
-        Sign up
-      </button>
+    <button type="submit"
+    (click)="captchaRef.execute()"
+    class="waves-effect waves-light btn blue right"
+    [disabled]="!(f.valid)" 
+    [ngClass]="{'disabled': !(f.valid)}" >
+    Sign up
+  </button>
 
-    </div>
+</div>
 
-  </div>
+</div>
 
 
 </form>

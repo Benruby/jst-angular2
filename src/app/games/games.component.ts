@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { GamesService } from '../services/games.service'
+import {AuthService} from "../services/auth/auth.service";
 import { Observable} from "rxjs";
 import {Router} from '@angular/router';
 
@@ -14,6 +15,7 @@ export class GamesComponent implements OnInit {
 	games: any[];
 
 	constructor(
+		public authService:AuthService,
 		private gamesService:GamesService,
 		private router:Router) { }
 
