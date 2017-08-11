@@ -13,7 +13,8 @@ const routes: Routes = [
 {
 	path: '',
 	component: HomeComponent,
-	pathMatch: 'full'
+	pathMatch: 'full',
+	canActivate: [AnonUserGuard]
 },
 {
 	path: 'home',
@@ -33,8 +34,8 @@ const routes: Routes = [
 },
 {
 	path: 'questions',
-	component: QuestionsComponent
-	// canActivate: [AuthGuard]
+	component: QuestionsComponent,
+	canActivate: [AnonUserGuard]
 },
 {
 	path: 'questions/:game_name',

@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter, ViewChild } from '@angular/core';
+import { Component, OnInit, DoCheck, Output, EventEmitter, ViewChild } from '@angular/core';
 import { QuestionsService } from '../services/questions.service';
 import { AuthService } from "../services/auth/auth.service";
 import {BehaviorSubject} from "rxjs/Rx";
@@ -9,6 +9,7 @@ import 'rxjs/add/operator/throttleTime';
 import { ActivatedRoute } from '@angular/router';
 import { FinishedGameDialogComponent } from '../dialogs/finished-game-dialog/finished-game-dialog.component';
 import { GameResult } from '../interfaces/game-result';
+import { AnonUserService } from 'app/services/anon-user.service';
 declare var $ :any;
 
 @Component({
@@ -17,7 +18,7 @@ declare var $ :any;
 	styleUrls: ['./questions.component.sass']
 })
 
-export class QuestionsComponent implements OnInit {
+export class QuestionsComponent implements OnInit, DoCheck {
 
 	@Output() onGameStatus = new EventEmitter<any>();
 	@ViewChild('gameFinishedDialog') gameFinishedDialog: FinishedGameDialogComponent;
@@ -42,7 +43,8 @@ export class QuestionsComponent implements OnInit {
 	constructor(
 		private questionService:QuestionsService,
 		private route: ActivatedRoute,
-		private router:Router) { }
+		private router:Router,
+		private anonService: AnonUserService) { }
 
 	ngOnInit() {
 		this.sub = this.route.params.subscribe(params => {
@@ -51,17 +53,24 @@ export class QuestionsComponent implements OnInit {
 		this.getQuestion();
 	}
 
+	ngDoCheck() {
+		if (!this.anonService.checkIfAnonUserIsSet()) {
+			this.router.navigate(['/']);
+		}
+	}
+
 	ngAfterViewInit() {
 		let self = this;
 		this.collapsible = $('.collapsible').collapsible({
 			onOpen: function(el) { 
 				self.enableAnswer = false;
 				self.markAnswerAsInccorect(el[0].dataset.questionId);
-			 }
+			}
 		});
 	}
 
 	getQuestion(){
+
 		this.enableAnswer = true;
 		return this.questionService.getQuestion()
 		.subscribe(
@@ -92,6 +101,11 @@ export class QuestionsComponent implements OnInit {
 	}
 
 	answerQuestion(event: any): void {
+
+		if (!this.anonService.checkIfAnonUserIsSet()) {
+			this.router.navigate(['/']);
+			return;
+		}
 
 		$('.collapsible').collapsible('close', 0);
 

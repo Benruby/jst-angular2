@@ -4,7 +4,7 @@ import {AuthDialogComponent} from "../auth-dialog/auth-dialog.component";
 import { GamesService } from '../services/games.service';
 import {Router} from '@angular/router';
 import { Utils } from '../Utils/utils';
-import { anon_token } from 'environments/environment';
+import { globals } from 'environments/environment';
 
 
 @Component({
@@ -59,7 +59,4 @@ export class HomeComponent implements OnInit {
 				console.log('err:', err);
 			});
 	}
-
-	// checkIfGameIsPlayed() {}
-
 }

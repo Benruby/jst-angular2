@@ -41,6 +41,9 @@ import { SubmitQuestionComponent } from './components/submit-question/submit-que
 import { RecaptchaNoFormsModule } from 'ng2-recaptcha/ng2-recaptcha.noforms';
 import { ReportBugComponent } from './dialogs/report-bug/report-bug.component';
 import { ReportBugService } from './services/report-bug.service';
+import { Utils } from './Utils/utils';
+import { AnonUserService } from './services/anon-user.service';
+
 
 @NgModule({
 	declarations: [
@@ -78,7 +81,9 @@ import { ReportBugService } from './services/report-bug.service';
 	GamesService,
 	AuthGuard,
 	AnonUserGuard,
-	ReportBugService
+	ReportBugService,
+	Utils,
+	AnonUserService
 	],
 	bootstrap: [AppComponent]
 })
