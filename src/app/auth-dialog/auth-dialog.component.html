@@ -1,45 +1,36 @@
 <div class="modal"
- materialize="modal" [materializeActions]="modalActions"
- [ngClass]="{'min-height-700': isRegisterMode()}" >
+materialize="modal" [materializeActions]="modalActions">
 
 
-  <div class="modal-content">
-
-      <div class="row">
-
-        <span class="modal-close right">
-          <i class="fa fa-times" aria-hidden="true"></i>
-        </span>
-      </div>
-
-      <div class="row">
-      <div class="row">
-        <h3 class="grey-text text-darken-2">{{authMode}}</h3>
-        <p 
-        *ngIf="isRegisterMode()"
-        class="grey-text text-darken-1">all fields are required.</p>
-        </div>
-        <app-login-form
-        (onFormResult)="onLoginFormResult($event)"
-        (onPasswordReset)="onPasswordReset($event)"
-        *ngIf="isLoginMode()">
-
-      </app-login-form>
-      <app-register-form (onFormResult)="onRegisterFormResult($event)"
-      *ngIf="isRegisterMode()">
-
-    </app-register-form>
-  </div>
+<div class="modal-content">
 
 
-  <div class="row">
-    <span class="grey-text text-darken-2" *ngIf="isLoginMode()">
-      Need an account? <a (click)="authMode='register'">Click here to register.</a>
-    </span>
-    <span class="grey-text text-darken-2" *ngIf="isRegisterMode()">
-      Already have an account? <a (click)="authMode='login'">Click here to login.</a>
-    </span>
-  </div>
+  <span class="modal-close right">
+    <i class="fa fa-times" aria-hidden="true"></i>
+  </span>
+
+  <h3 class="grey-text text-darken-2">{{authMode}}</h3>
+  <span 
+  *ngIf="isRegisterMode()"
+  class="grey-text text-darken-1">all fields are required.</span>
+  <app-login-form
+  (onFormResult)="onLoginFormResult($event)"
+  (onPasswordReset)="onPasswordReset($event)"
+  *ngIf="isLoginMode()">
+
+</app-login-form>
+<app-register-form (onFormResult)="onRegisterFormResult($event)"
+  *ngIf="isRegisterMode()">
+
+</app-register-form>
+
+
+<span class="grey-text text-darken-2" *ngIf="isLoginMode()">
+  Need an account? <a (click)="authMode='register'">Click here to register.</a>
+</span>
+<span class="grey-text text-darken-2" *ngIf="isRegisterMode()">
+  Already have an account? <a (click)="authMode='login'">Click here to login.</a>
+</span>
 
 </div>
 

@@ -1,4 +1,4 @@
-import { Component, OnInit, DoCheck, Output, EventEmitter, ViewChild } from '@angular/core';
+import { Component, OnInit, DoCheck, Output, EventEmitter, ViewChild, ElementRef } from '@angular/core';
 import { QuestionsService } from '../services/questions.service';
 import { AuthService } from "../services/auth/auth.service";
 import {BehaviorSubject} from "rxjs/Rx";
@@ -22,6 +22,7 @@ export class QuestionsComponent implements OnInit, DoCheck {
 
 	@Output() onGameStatus = new EventEmitter<any>();
 	@ViewChild('gameFinishedDialog') gameFinishedDialog: FinishedGameDialogComponent;
+	@ViewChild('questioScrollPoint') private scrollPoint: ElementRef;
 
 	question: Observable<any> = new Observable();
 	result: any;
@@ -33,6 +34,7 @@ export class QuestionsComponent implements OnInit, DoCheck {
 	questionCounter: number = 1;
 	collapsible: any;
 	enableAnswer: boolean = true;
+	counter: number;
 	
 	results: GameResult = {
 		numOfQuestions: 0,
@@ -47,6 +49,7 @@ export class QuestionsComponent implements OnInit, DoCheck {
 		private anonService: AnonUserService) { }
 
 	ngOnInit() {
+		this.counter = 0;
 		this.sub = this.route.params.subscribe(params => {
 			this.gameName = params['game_name']; 
 		});
@@ -85,19 +88,19 @@ export class QuestionsComponent implements OnInit, DoCheck {
 				}
 
 				if(res.status == 200){
-					console.log(res.json())
 					this.question = res.json().question;
+					this.counter++;
 				}
 			},
 			err => {
 				this.router.navigate(['/']);
-			}
-			);
+			});
 	}
 
 	nextQuestion(){
 		$('.collapsible').collapsible('close', 0);
 		this.getQuestion();
+		this.scrollToTop(this.scrollPoint);
 	}
 
 	answerQuestion(event: any): void {
@@ -140,7 +143,11 @@ export class QuestionsComponent implements OnInit, DoCheck {
 		this.questionService.getQuestionAnswer(questionId)
 		.then(res => {
 			this.explanation = res.json().explanation.answer_explanation;
-		})
+		});
+	}
+
+	scrollToTop(element) {
+		element.nativeElement.scrollIntoView();
 	}
 
 }

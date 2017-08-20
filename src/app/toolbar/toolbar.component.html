@@ -4,49 +4,54 @@
   <nav  role="navigation">
 
     <div class="nav-wrapper blue">
-      <div class="width-70-pc">
-        <a [routerLink]="['']" id="logo-container" class="brand-logo">JavaScript Trivia</a>
+      <div class="nav-menus-wrapper">
+        <a [routerLink]="['']" id="logo-container" class="brand-logo-custom">JavaScript Trivia
+          <span class="beta-mark">Beta</span>
+        </a>
 
         <ul class="left-menu">
-          <li><a [routerLink]="['/']">Home</a></li>
-          <li><a 
+          <li class="large-screen-menu-item"><a [routerLink]="['/']">Home</a></li>
+          <li class="large-screen-menu-item"><a 
             (click)="presentAuthDialog()"
             *ngIf="!(authService.userSignedIn$ | async)">
             Save Your Results</a></li>
-            <li><a [routerLink]="['/games']">More Games</a></li>
-<!--             <li><a [routerLink]="['/submit_question']">Submit a Question</a></li> -->
-          </ul>
+            <li class="large-screen-menu-item">
+              <a [routerLink]="['/games']">More Games</a></li>
+              <!--             <li><a [routerLink]="['/submit_question']">Submit a Question</a></li> -->
+            </ul>
 
-          <ul class="right hide-on-med-and-down">
+            <ul class="right-menu right">
 
-            <li *ngIf="!(authService.userSignedIn$ | async)"> <a (click)="presentAuthDialog()" >LOGIN</a></li>
-            <!--           <li *ngIf="!(authService.userSignedIn$ | async)"> <a (click)="presentAuthDialog('register')">REGISTER</a></li> -->
-            <!-- *ngIf="(authService.userSignedIn$ | async) &&  -->
-            <!-- authService.getUserName()" -->
+              <li *ngIf="!(authService.userSignedIn$ | async)" class="large-screen-menu-item">
+               <a (click)="presentAuthDialog()" >LOGIN</a></li>
+               <!--           <li *ngIf="!(authService.userSignedIn$ | async)"> <a (click)="presentAuthDialog('register')">REGISTER</a></li> -->
+               <!-- *ngIf="(authService.userSignedIn$ | async) &&  -->
+               <!-- authService.getUserName()" -->
 
-            <li 
-            class="postition-relative">
-            <a (click)="openUserDropdown()"
-            *ngIf="(authService.userSignedIn$ | async)"
-            class="postition-relative">
-            {{authService.getUserName()}}
-            <i class="tiny material-icons custom-user-dropdown-icon">arrow_drop_down</i>
-          </a>
+               <li 
+               class="postition-relative">
+               <a (click)="openUserDropdown()"
+               *ngIf="(authService.userSignedIn$ | async)"
+               class="postition-relative">
+               {{authService.getUserName()}}
+               <i class="tiny material-icons custom-user-dropdown-icon">arrow_drop_down</i>
+             </a>
 
-            <a (click)="openUserDropdown()"
-            *ngIf="!(authService.userSignedIn$ | async)"
-            class="postition-relative">
-            More
-            <i class="tiny material-icons custom-user-dropdown-icon">arrow_drop_down</i>
-          </a>
+             <a (click)="openUserDropdown()"
+             *ngIf="!(authService.userSignedIn$ | async)"
+             class="postition-relative">
+             More
+             <i class="tiny material-icons custom-user-dropdown-icon">arrow_drop_down</i>
+           </a>
 
-          <app-user-drop-down 
-          [showUserDropdown]="showUserDropdown"
-          (hideUserDropDown)="openUserDropdown()"
-          (logout)="logOut()"
-          (showReportBugDialog)="presentReportBugDialog()"
-          ></app-user-drop-down>
-        </li>
+           <app-user-drop-down 
+           [showUserDropdown]="showUserDropdown"
+           (hideUserDropDown)="openUserDropdown()"
+           (logout)="logOut()"
+           (showReportBugDialog)="presentReportBugDialog()"
+           (authDialog)="presentAuthDialog()"
+           ></app-user-drop-down>
+         </li>
    <!--    <li *ngIf="(authService.userSignedIn$ | async)"><a (click)="logOut()">LOGOUT</a></li>
  -->
 </ul>

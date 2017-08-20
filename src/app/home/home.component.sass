@@ -1,12 +1,24 @@
+@import '../../sass-variables.sass';
+
 .mainWrapper
-	min-height: 100vh;
 	padding-top: 60px;
+	min-height: 100%;
+	border-top: 1px solid grey;
 
 .contentGames
-	min-height: 100vh;
+	
+	@media screen and (max-width: $medium-size)
+		width: $full-width;
+
+	@media screen and (min-width: $medium-size)
+		width: 66%;
+
+	min-height: $min-main-height;
 
 .sideSection
-	min-height: 100vh;
+	@media screen and (min-width: $small-size)
+		width: 33%;
+	min-height: $min-main-height;	
 
 .content-mini
 	border: 1px solid grey;
@@ -21,7 +33,7 @@
 	min-height: 30vh;
 
 .full-height
-	min-height: 83vh;
+	min-height: 100%;
 
 .bckgcolor-white
 	background-color: white;

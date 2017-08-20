@@ -1,26 +1,32 @@
- <div class="container">
- 	<div class="row">
- 		<div class="finishedGameWrapper">
- 			<div class="row">
- 				<h1 class="finishedHeader">the game is finished!</h1>
+ 		<div class="finishedGameWrapper padding-20" 
+ 		[@resultState]="results" #finishedGame>
+ 			<div class="">
+ 				<h2 class="finishedHeader">Game Over!</h2>
  			</div>
 
- 			<div class="row">
- 				<h3>questions: {{results.numOfQuestions}}</h3>	
+ 			<div class="width-70-pc line-wrapper padding-5">
+ 				<h4 class="float-left">questions: </h4>
+ 				<h4 class="float-right">{{results.numOfQuestions}}
+ 				</h4>	
+ 				<div class="clear-both"></div>
  			</div>
 
- 			<div class="row">
- 				<h3>correct answers: {{results.numOfCorrectAnswers}}</h3>	
+ 			<div class="width-70-pc line-wrapper padding-5">
+ 				<h4 class="float-left">correct answers:
+ 				</h4>
+ 				<h4 class="float-right"> {{results.numOfCorrectAnswers}}</h4>	
+ 				<div class="clear-both"></div>
  			</div>
 
- 			<div class="row">
- 				<h3>total score: {{results.gameScore}}</h3>	
+ 			<div class="width-70-pc line-wrapper padding-5">
+ 				<h4 class="float-left">total score: </h4>
+ 				<h4 class="float-right">{{results.gameScore}}</h4>	
+ 				<div class="clear-both"></div>
  			</div>
-
- 			<a class="waves-effect waves-light btn"
- 			 [routerLink]="['/games']">Back to Games</a>
- 			<a class="waves-effect waves-light btn"
- 			[routerLink]="['']">Home Page</a>
+ 			<div class="padding-top-20">
+ 				<a class="waves-effect waves-light btn finished-action"
+ 				[routerLink]="['/games']">Back to Games</a>
+ 				<a class="waves-effect waves-light btn finished-action"
+ 				(click)="navigateHome()">Home Page</a>
+ 			</div>
  		</div>
- 	</div>
- </div>

@@ -13,6 +13,7 @@ export class UserDropDownComponent implements OnInit {
   @Output() hideUserDropDown: EventEmitter<boolean> = new EventEmitter();
   @Output() logout: EventEmitter<boolean> = new EventEmitter();
   @Output() showReportBugDialog: EventEmitter<boolean> = new EventEmitter();
+  @Output() authDialog: EventEmitter<boolean> = new EventEmitter();
 
   constructor(public authService:AuthService) { }
 
@@ -30,5 +31,9 @@ export class UserDropDownComponent implements OnInit {
 
   presentReportBugDialog() {
     this.showReportBugDialog.emit();
+  }
+
+  presentAuthDialog() {
+    this.authDialog.emit();
   }
 }

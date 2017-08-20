@@ -1,5 +1,29 @@
+@import '../../sass-variables.sass';
+
 .finishedGameWrapper
 	height: 500px;
+	border: 1px solid grey;
+	margin-top: 5%;
+	background: white;
+	border-radius: 6px;
+	box-shadow: 0 0 4px #999;
+	
+.line-wrapper
+	@media screen and (max-width: $small-size)
+		width: 100%;
+		background-color: #F2F2F2;
+		margin-bottom: 10px;
+		border-radius: 4px;
 
 .finishedHeader
-	border-bottom: 1px solid #ADA8A8;
+	text-align: center;
+
+.finishedGameWrapper h4, .finishedGameWrapper h2
+	color: grey;
+	@media screen and (max-width: $small-size)
+		font-size: 1.6em;
+
+.finished-action
+	@media screen and (max-width: $small-size)
+		display: block;
+		margin-top: 10%;

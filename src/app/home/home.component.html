@@ -1,7 +1,10 @@
 <div class="row">
-	<div class="mainWrapper col s12 valign-wrapper">
-		<div class="contentGames col s8">
-			<div class="col s12 center-align content-mini full-height bckgcolor-white left-align padding-20">
+<div>
+	<h3 class="header-medium">Select A Game</h3>
+</div>
+	<div class="mainWrapper">
+		<div class="contentGames left">
+			<div class="col s12 center-align content-mini bckgcolor-white padding-20">
 				<div>
 					<div class="card horizontal hoverable standard-bckg-color pointer"
 					*ngFor="let g of games"
@@ -10,13 +13,13 @@
 						<img src="https://pbs.twimg.com/profile_images/634644295618658304/UuIqtEJ8.png" alt="" class="image-small">
 					</div>
 					<div class="card-content col s12">
-						<p 
+						<span 
 						class="notif-played"
 						*ngIf="g.user_related && 
 						(authService.userData)"
 						>Played!
 						<span class="user-score display-block font-size-12">score: {{g.user_score || 'Not Finished'}}</span>
-					</p>	
+					</span>	
 					<p class="card-title left-align">{{g.name}}</p>
 					<p class="game-description left-align">
 						{{g.description}}
@@ -27,19 +30,24 @@
 		</div>
 	</div>
 </div>
-<div class="sideSection col s4">
+<div class="sideSection medium-screen-item right">
 	<div class="content-mini content-up col s10 bckgcolor-white right padding-20">
 		<p class="header-small center-align common-color">Welcome to the JavaScript Question Trivia.</p>
 		<p class="common-color">Playing is free, no need to sign up, but if you 
 			want to save your result, sign up easily here.</p>
 		</div>
 
-		<div class="content-mini content-down col s10 bckgcolor-white right">
-			more text !!
-			more text !!more text !!more text !!
-			more text !!more text !!
-			more text !!
-			more text !!more text !! more text !!more text !!more text !! more text !! more text !! more text !!
+		<div class="content-mini content-down col s10 bckgcolor-white right padding-20">
+		<p class="common-color">
+			Web Trivia - A resource for short question in various subjects, all related to modern Web development. 
+		</p>
+		<p class="common-color">
+			Question about JavaScript paradigms, Jquery, CSS3, SASS/LESS, HTML and more.
+		</p>
+		<p class="common-color">
+			We are still under constant improvement. 
+			Enjoy!			
+		</p>
 		</div>
 	</div>
 </div>

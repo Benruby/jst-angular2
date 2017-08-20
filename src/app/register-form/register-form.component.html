@@ -53,7 +53,8 @@
     Passwords must match
   </span>
 
-  <recaptcha 
+  <recaptcha
+  [hidden]="true" 
   (resolved)="$event && onSignUpSubmit($event)" siteKey="6LfbfSsUAAAAAIH0hlftK66MybqJEiGeS-nXgQjj"
   size="invisible"
   #captchaRef="reCaptcha"></recaptcha>

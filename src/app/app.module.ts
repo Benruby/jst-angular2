@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CoreModule } from './core/core.module';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -43,6 +43,7 @@ import { ReportBugComponent } from './dialogs/report-bug/report-bug.component';
 import { ReportBugService } from './services/report-bug.service';
 import { Utils } from './Utils/utils';
 import { AnonUserService } from './services/anon-user.service';
+import { BringToTopComponent } from './components/bring-to-top/bring-to-top.component';
 
 
 @NgModule({
@@ -64,6 +65,7 @@ import { AnonUserService } from './services/anon-user.service';
 	CloseOnClickDirective,
 	SubmitQuestionComponent,
 	ReportBugComponent,
+	BringToTopComponent,
 	],
 	imports: [
 	BrowserModule,
@@ -72,6 +74,7 @@ import { AnonUserService } from './services/anon-user.service';
 	HttpModule,
 	FormsModule,
 	CoreModule,
+	BrowserAnimationsModule,
 	RecaptchaNoFormsModule.forRoot()
 	],
 	providers: [

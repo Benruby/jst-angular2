@@ -1,7 +1,12 @@
+@import '../../sass-variables.sass';
+
 .games-wrapper
 	padding-top: 50px;
 	margin-top: 100px;
 	border-top: 1px solid #ADA8A8;
+	@media screen and (max-width: $small-size)
+		margin-top: 30px;
+		padding-top: 20px;
 
 .card-panel.grey.lighten-5 .notif-played-small
 	position: absolute;
@@ -14,10 +19,17 @@
 
 .num-of-questions-small
 	font-size: 10px;
-	position: absolute;
+	position: relative;
 	bottom: 0;
 	left: 0;
-	padding-left: inherit;
 
 .min-height
 	min-height: 210px;
+
+.game-image-container
+	width: 55px;
+	height: 55px;
+
+.game-image-container .game-image
+	width: 100%;
+	height: auto;
