@@ -5,7 +5,7 @@
 <div class="col s12 games-wrapper">
  <div class="row">
  	<div class="col s12 m12 l4" *ngFor="let game of games">
- 		<div class="card-panel grey lighten-5 z-depth-1 postition-relative"
+ 		<div class="card-panel grey lighten-5 z-depth-1 postition-relative hoverable pointer"
     (click)="startGame(game.name)">
     <p 
     class="notif-played-small"
@@ -16,7 +16,7 @@
   <div class="row valign-wrapper min-height">
 
     <div class="game-image-container">
-      <img src="https://pbs.twimg.com/profile_images/634644295618658304/UuIqtEJ8.png" alt="" class="circle game-image"> <!-- notice the "circle" class -->
+      <img [src]="game.image_url" alt="" class="circle game-image"> <!-- notice the "circle" class -->
     </div>
     <div class="col s10 min-height postition-relative">
       <p class="black-text underlined-soft vertical-align-top">

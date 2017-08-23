@@ -22,8 +22,14 @@ $headerHeight: 50px;
 
 .question-card
 	min-height: 300px;
+	@media screen and (max-width: $small-size)
+		min-height: 100px;
 
-.answersWrapper
+.question-card-main
+	@media screen and (max-width: $small-size)
+		width: 100%;
+		display: block;
+		font-size: 0.9em;
 
 .answer-card
 	min-height: 140px;
@@ -38,9 +44,6 @@ $headerHeight: 50px;
 		padding: 10px;
 		width: 25%;
 		vertical-align: top;
-
-
-
 
 	@media screen and (max-width: $small-size)
 		display: block;

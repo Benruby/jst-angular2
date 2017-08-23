@@ -6,11 +6,11 @@
 		<div class="contentGames left">
 			<div class="col s12 center-align content-mini bckgcolor-white padding-20">
 				<div>
-					<div class="card horizontal hoverable standard-bckg-color pointer"
+					<div class="card horizontal hoverable standard-bckg-color pointer home-game-card"
 					*ngFor="let g of games"
 					(click)="startGame(g.name)">
 					<div class="card-image">
-						<img src="https://pbs.twimg.com/profile_images/634644295618658304/UuIqtEJ8.png" alt="" class="image-small">
+						<img [src]="g.image_url" alt="" class="image-small">
 					</div>
 					<div class="card-content col s12">
 						<span 
@@ -45,9 +45,9 @@
 			Question about JavaScript paradigms, Jquery, CSS3, SASS/LESS, HTML and more.
 		</p>
 		<p class="common-color">
-			We are still under constant improvement. 
-			Enjoy!			
+			We are always improving. Drop us a word if you have any suggestion.
 		</p>
+		<p class="common-color">Enjoy!</p>
 		</div>
 	</div>
 </div>
@@ -55,3 +55,7 @@
 
 <app-auth-dialog #authDialog ></app-auth-dialog>
 <app-report-bug #reportBugDialog></app-report-bug>
+
+<app-bring-to-top
+  [scrollInterval]="40"
+></app-bring-to-top>
