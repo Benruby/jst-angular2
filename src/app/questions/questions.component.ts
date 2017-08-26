@@ -136,11 +136,11 @@ export class QuestionsComponent implements OnInit, DoCheck {
 			} 
 			this.nextQuestion();	
 		})
-		.then(function(){
+		.then(() => {
 			this.disabledAnswers = false;
 			this.enableAnswer = true
-		}
-		);
+		})
+
 	}
 
 	markAnswerAsInccorect(questionId) {
