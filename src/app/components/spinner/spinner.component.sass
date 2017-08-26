@@ -1,0 +1,47 @@
+.hidden
+  visibility: hidden;
+
+
+.spinner
+  width: 80px;
+  background-color: #46484c;
+  line-height: 22px;
+  text-align: center;
+  position: fixed;
+  left: 30px;
+  bottom: 50px;
+  border-radius: 5px;
+
+
+.bull 
+  color: white;
+  font-size: 2em;
+  vertical-align: middle;
+  animation: fadeInFromNone 0.8s ease-in-out;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+
+
+.firstBull 
+  animation-delay: 0s;
+
+.secondBull 
+  animation-delay: 0.3s;
+
+.thirdBull 
+  animation-delay: 0.6s;
+
+.forthBull 
+  animation-delay: 1.2s;
+
+
+@-webkit-keyframes fadeInFromNone
+    0% 
+        display: none;
+        opacity: 0.3;
+    
+
+    100% 
+        display: block;
+        opacity: 0.9;
+    

@@ -12,19 +12,25 @@ import {
 } from '@angular/router';
 
 import 'rxjs/add/operator/toPromise';
+import { SpinnerService } from 'app/components/spinner/spinner.service';
+
 
 @Injectable()
 export class QuestionsService {
 
   constructor(
     private http: Http,
-    public authService:Angular2TokenService) { }
+    public authService:Angular2TokenService,
+    private spinnerService: SpinnerService) { }
 
   getQuestion():Observable<Response>{
-    return this.authService.get('/games/get_question')
+    this.spinnerService.show();
+    let response = this.authService.get('/games/get_question')
     .map( res => {
       return res;
     });
+    this.spinnerService.hide();
+    return response;
   }
 
   answerQuestion(questionId: any, answerId: any):Promise<Response>{

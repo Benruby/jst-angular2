@@ -10,6 +10,8 @@ import { ActivatedRoute } from '@angular/router';
 import { FinishedGameDialogComponent } from '../dialogs/finished-game-dialog/finished-game-dialog.component';
 import { GameResult } from '../interfaces/game-result';
 import { AnonUserService } from 'app/services/anon-user.service';
+import { ConfigService } from 'app/config/config';
+
 declare var $ :any;
 
 @Component({
@@ -46,7 +48,8 @@ export class QuestionsComponent implements OnInit, DoCheck {
 		private questionService:QuestionsService,
 		private route: ActivatedRoute,
 		private router:Router,
-		private anonService: AnonUserService) { }
+		private anonService: AnonUserService,
+		private config: ConfigService) { }
 
 	ngOnInit() {
 		this.counter = 0;
@@ -100,10 +103,14 @@ export class QuestionsComponent implements OnInit, DoCheck {
 	nextQuestion(){
 		$('.collapsible').collapsible('close', 0);
 		this.getQuestion();
-		this.scrollToTop(this.scrollPoint);
+		if (this.config.shouldScrollPage()) {
+			this.scrollToTop(this.scrollPoint);
+		}
 	}
 
 	answerQuestion(event: any): void {
+
+		this.enableAnswer = false;
 
 		if (!this.anonService.checkIfAnonUserIsSet()) {
 			this.router.navigate(['/']);
@@ -129,11 +136,11 @@ export class QuestionsComponent implements OnInit, DoCheck {
 			} 
 			this.nextQuestion();	
 		})
-		.then(() => this.disabledAnswers = false);
-	}
-
-	getQuestionNumber() {
-
+		.then(function(){
+			this.disabledAnswers = false;
+			this.enableAnswer = true
+		}
+		);
 	}
 
 	markAnswerAsInccorect(questionId) {

@@ -9,38 +9,32 @@
 		</span></div>
 	</div>
 	<div class="card horizontal question-card-main">
-<!-- 			<div class="card-image">
-				<img src="http://nodeframework.com/assets/img/js.png">
-			</div> -->
-			<div class="card-stacked">
-				<div>
-					<div class="card-content question-card"
-					highlight-js
-					[highlightContent]="question.body">
-				</div>
+		<div class="card-stacked">
+			<div>
+				<div class="card-content question-card"
+				highlight-js
+				[highlightContent]="question.body">
 			</div>
 		</div>
 	</div>
+</div>
 
-	<div id="answersWrapper">
-		<div class="row answer-row">
-			<div class="answer-card-wrapper"
-			*ngFor="let answer of question.answers">
-			<div class="card-panel teal answer-card clickable hoverable" 
-			[ngClass]="{'disabler' : !enableAnswer}"
-			(click)="enableAnswer && answerQuestion($event)"
-			[attr.data-answer-id]="answer.id"
-			[attr.data-question-id]="question.id">
-			<span class="white-text card-text">
-				{{answer.body}}
-			</span>
-		</div>
+<div id="answersWrapper">
+	<div class="row answer-row">
+		<div class="answer-card-wrapper"
+		*ngFor="let answer of question.answers">
+		<div class="card-panel teal answer-card clickable hoverable" 
+		[ngClass]="{'disabler' : !enableAnswer}"
+		(click)="enableAnswer && answerQuestion($event)"
+		[attr.data-answer-id]="answer.id"
+		[attr.data-question-id]="question.id">
+		<span class="white-text card-text">
+			{{answer.body}}
+		</span>
 	</div>
 </div>
 </div>
-<!-- <div id="cardActions">
-	<a class="waves-effect waves-light btn">skip</a>
-</div> -->
+</div>
 </div>
 
 <ul class="collapsible" data-collapsible="accordion">
@@ -51,7 +45,6 @@
 				<span class="wrong-answer-notif">Showing the answer will count as a wrong answer.</span>
 			</div>
 		</div>
-		<!-- 					<span class="wrong-answer-notif">Showing the answer will count as a wrong answer.</span> -->
 		<div class="collapsible-body">
 			<a class="waves-effect waves-light btn right next-button"
 			(click)="nextQuestion()">Next Question</a>
@@ -61,5 +54,6 @@
 	</ul>
 </div>
 
-	<app-finished-game *ngIf="showEndGamePage" [results]="results" ></app-finished-game>
-<!-- <app-finished-game-dialog #gameFinishedDialog></app-finished-game-dialog> -->
+<app-finished-game *ngIf="showEndGamePage" [results]="results" ></app-finished-game>
+
+<app-spinner></app-spinner>

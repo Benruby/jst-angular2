@@ -45,6 +45,11 @@ import { Utils } from './Utils/utils';
 import { AnonUserService } from './services/anon-user.service';
 import { BringToTopComponent } from './components/bring-to-top/bring-to-top.component';
 
+import { WindowRef } from 'app/services/windowRef/window-ref';
+import { ConfigService } from './config/config';
+import { SpinnerComponent } from './components/spinner/spinner.component';
+import { SpinnerService } from './components/spinner/spinner.service';
+
 
 @NgModule({
 	declarations: [
@@ -66,6 +71,7 @@ import { BringToTopComponent } from './components/bring-to-top/bring-to-top.comp
 	SubmitQuestionComponent,
 	ReportBugComponent,
 	BringToTopComponent,
+	SpinnerComponent,
 	],
 	imports: [
 	BrowserModule,
@@ -79,14 +85,16 @@ import { BringToTopComponent } from './components/bring-to-top/bring-to-top.comp
 	],
 	providers: [
 	Angular2TokenService,
-	// AuthService,
 	QuestionsService,
 	GamesService,
 	AuthGuard,
 	AnonUserGuard,
 	ReportBugService,
 	Utils,
-	AnonUserService
+	AnonUserService,
+	WindowRef,
+	ConfigService,
+	SpinnerService
 	],
 	bootstrap: [AppComponent]
 })
