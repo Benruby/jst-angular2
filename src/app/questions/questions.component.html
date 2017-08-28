@@ -1,6 +1,7 @@
-<div id="questionWrapper" *ngIf="!showEndGamePage"        #questioScrollPoint>
+<!-- <div class="verticalSpacer"></div> -->
+<div id="questionWrapper" *ngIf="!showEndGamePage">
 	<div class="col s12 m7 container-width margin-auto">
-		<div class="header-wrapper">
+		<div class="header-wrapper" #questioScrollPoint>
 			<div class="header question-number"
 			[ngClass]="{'question-number-full' : question.body}">
 			<span class="question-number-text"

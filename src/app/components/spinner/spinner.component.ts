@@ -10,7 +10,7 @@ import { SpinnerState } from './spinner';
 })
 export class SpinnerComponent implements OnInit {
 
-	show = false;
+	show: boolean = false;
 	private subscription: Subscription;
 
 	constructor(private spinnerService: SpinnerService) { }

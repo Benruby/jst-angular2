@@ -11,7 +11,7 @@ import { FinishedGameDialogComponent } from '../dialogs/finished-game-dialog/fin
 import { GameResult } from '../interfaces/game-result';
 import { AnonUserService } from 'app/services/anon-user.service';
 import { ConfigService } from 'app/config/config';
-
+import { WindowRef } from 'app/services/windowRef/window-ref';
 declare var $ :any;
 
 @Component({
@@ -49,7 +49,8 @@ export class QuestionsComponent implements OnInit, DoCheck {
 		private route: ActivatedRoute,
 		private router:Router,
 		private anonService: AnonUserService,
-		private config: ConfigService) { }
+		private config: ConfigService,
+		private windowRef: WindowRef) { }
 
 	ngOnInit() {
 		this.counter = 0;
@@ -104,7 +105,8 @@ export class QuestionsComponent implements OnInit, DoCheck {
 		$('.collapsible').collapsible('close', 0);
 		this.getQuestion();
 		if (this.config.shouldScrollPage()) {
-			this.scrollToTop(this.scrollPoint);
+			this.windowRef.nativeWindow.scrollTo(0,0)
+
 		}
 	}
 
@@ -144,17 +146,9 @@ export class QuestionsComponent implements OnInit, DoCheck {
 	}
 
 	markAnswerAsInccorect(questionId) {
-		// console.log("showing answer")
-		//  $('.collapsible').collapsible('open', 0);
-		//   $('.collapsible').collapsible('destroy');
 		this.questionService.getQuestionAnswer(questionId)
 		.then(res => {
 			this.explanation = res.json().explanation.answer_explanation;
 		});
 	}
-
-	scrollToTop(element) {
-		element.nativeElement.scrollIntoView();
-	}
-
 }

@@ -25,7 +25,6 @@ export class HomeComponent implements OnInit {
 
 	ngOnInit() {
 		this.getGames();
-		console.log("home init")
 	}
 
 	presentAuthDialog(mode: 'login'){
@@ -42,7 +41,6 @@ export class HomeComponent implements OnInit {
 				}
 			},
 			err => {
-				console.log('err:', err);
 			});
 	}
 
@@ -56,7 +54,6 @@ export class HomeComponent implements OnInit {
 			},
 			err => {
 				this.router.navigate(['/']);
-				console.log('err:', err);
 			});
 	}
 }
