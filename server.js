@@ -1,22 +1,28 @@
 const express = require('express');
 const app = express();
 
-const forceSSL = function() {
-  return function (req, res, next) {
-    if (req.headers['x-forwarded-proto'] !== 'https') {
-      return res.redirect(
-       ['https://', req.get('Host'), req.url].join('')
-      );
-    }
-    next();
-  }
-}
+// const forceSSL = function() {
+//   return function (req, res, next) {
+//     if (req.headers['x-forwarded-proto'] !== 'https') {
+//       return res.redirect(
+//        ['https://', req.get('Host'), req.url].join('')
+//       );
+//     }
+//     next();
+//   }
+// }
+
+
 // Instruct the app
 // to use the forceSSL
 // middleware
-app.use(forceSSL());
+// 
+// 
+// app.use(forceSSL());
 
 const path = require('path');
+
+
 var router = express.Router();
 // ...
 // For all GET requests, send back index.html
@@ -29,17 +35,25 @@ var router = express.Router();
 // in the dist directory
 // 
 // 
-// app.use(express.static(__dirname + '/dist'));
+app.use(express.static(__dirname + '/dist'));
 // 
 // 
 // Start the app by listening on the default
 // serve angular front end files from root path
-router.use('/', express.static('app', { redirect: false }));
+
+
+
+// router.use('/', express.static('app', { redirect: false }));
  
 // rewrite virtual urls to angular app to enable refreshing of internal pages
-router.get('*', function (req, res, next) {
-    res.sendFile(path.resolve('app/index.html'));
+app.all('/*', function (req, res, next) {
+    res.sendFile('index.html', { root: __dirname + '/dist' });
 });
+
+// app.all('/*', function(req, res, next) {
+//     // Just send the index.html for other files to support HTML5Mode
+//     res.sendFile('index.html', { root: __dirname + '/dist' });
+// });
 
 // Heroku port
 app.listen(process.env.PORT || 8080);
