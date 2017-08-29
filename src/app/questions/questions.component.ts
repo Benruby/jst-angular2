@@ -1,4 +1,4 @@
-import { Component, OnInit, DoCheck, Output, EventEmitter, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, DoCheck, Output, EventEmitter, ViewChild, ElementRef, OnDestroy } from '@angular/core';
 import { QuestionsService } from '../services/questions.service';
 import { AuthService } from "../services/auth/auth.service";
 import {BehaviorSubject} from "rxjs/Rx";
@@ -20,7 +20,7 @@ declare var $ :any;
 	styleUrls: ['./questions.component.sass']
 })
 
-export class QuestionsComponent implements OnInit, DoCheck {
+export class QuestionsComponent implements OnInit, DoCheck, OnDestroy {
 
 	@Output() onGameStatus = new EventEmitter<any>();
 	@ViewChild('gameFinishedDialog') gameFinishedDialog: FinishedGameDialogComponent;
@@ -33,7 +33,6 @@ export class QuestionsComponent implements OnInit, DoCheck {
 	gameName: string;
 	private sub: any;
 	showEndGamePage: boolean = false
-	questionCounter: number = 1;
 	collapsible: any;
 	enableAnswer: boolean = true;
 	counter: number;
@@ -53,11 +52,12 @@ export class QuestionsComponent implements OnInit, DoCheck {
 		private windowRef: WindowRef) { }
 
 	ngOnInit() {
-		this.counter = 0;
+		this.counter = +localStorage.getItem('q_num') || 1;
 		this.sub = this.route.params.subscribe(params => {
 			this.gameName = params['game_name']; 
 		});
 		this.getQuestion();
+		this.windowRef.nativeWindow.scrollTo(0,0);
 	}
 
 	ngDoCheck() {
@@ -74,6 +74,10 @@ export class QuestionsComponent implements OnInit, DoCheck {
 				self.markAnswerAsInccorect(el[0].dataset.questionId);
 			}
 		});
+	}
+
+	ngOnDestroy(){
+		localStorage.setItem('q_num', "0");
 	}
 
 	getQuestion(){
@@ -93,7 +97,7 @@ export class QuestionsComponent implements OnInit, DoCheck {
 
 				if(res.status == 200){
 					this.question = res.json().question;
-					this.counter++;
+					localStorage.setItem('q_num', this.counter.toString());
 				}
 			},
 			err => {
@@ -132,10 +136,7 @@ export class QuestionsComponent implements OnInit, DoCheck {
 		this.questionService.answerQuestion(questionId, answerId)
 		.then(res => {
 			this.result = res.json();
-			console.log(this.result)
-			if (this.result) {
-				
-			} 
+		    this.counter++;
 			this.nextQuestion();	
 		})
 		.then(() => {

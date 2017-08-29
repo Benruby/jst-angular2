@@ -18,7 +18,7 @@
 						*ngIf="g.user_related && 
 						(authService.userData)"
 						>Played!
-						<span class="user-score display-block font-size-12">score: {{g.user_score || 'Not Finished'}}</span>
+						<span class="user-score display-block font-size-12">score: {{g.user_score + '/100' || 'Not Finished'}}</span>
 					</span>	
 					<p class="card-title left-align">{{g.name}}</p>
 					<p class="game-description left-align">
