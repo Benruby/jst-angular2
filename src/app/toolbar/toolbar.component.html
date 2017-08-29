@@ -5,7 +5,7 @@
 
     <div class="nav-wrapper blue">
       <div class="nav-menus-wrapper">
-        <a [routerLink]="['']" id="logo-container" class="brand-logo-custom">Web Trivia
+        <a [routerLink]="['']" id="logo-container" class="brand-logo-custom">Web Questions
           <span class="beta-mark">Beta</span>
         </a>
 
@@ -17,17 +17,12 @@
             Save Your Results</a></li>
             <li class="large-screen-menu-item">
               <a [routerLink]="['/games']">More Games</a></li>
-              <!--             <li><a [routerLink]="['/submit_question']">Submit a Question</a></li> -->
             </ul>
 
             <ul class="right-menu right">
 
               <li *ngIf="!(authService.userSignedIn$ | async)" class="large-screen-menu-item">
                <a (click)="presentAuthDialog()" >LOGIN</a></li>
-               <!--           <li *ngIf="!(authService.userSignedIn$ | async)"> <a (click)="presentAuthDialog('register')">REGISTER</a></li> -->
-               <!-- *ngIf="(authService.userSignedIn$ | async) &&  -->
-               <!-- authService.getUserName()" -->
-
                <li 
                class="postition-relative">
                <a (click)="openUserDropdown()"
@@ -52,14 +47,12 @@
            (authDialog)="presentAuthDialog()"
            ></app-user-drop-down>
          </li>
-   <!--    <li *ngIf="(authService.userSignedIn$ | async)"><a (click)="logOut()">LOGOUT</a></li>
- -->
-</ul>
-</div>
+       </ul>
+     </div>
 
-</div>
+   </div>
 
-</nav>
+ </nav>
 
 </div>
 

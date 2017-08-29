@@ -13,7 +13,7 @@ import {
 
 import 'rxjs/add/operator/toPromise';
 import { SpinnerService } from 'app/components/spinner/spinner.service';
-
+import 'rxjs/add/operator/delay';
 
 @Injectable()
 export class QuestionsService {
@@ -25,12 +25,11 @@ export class QuestionsService {
 
   getQuestion():Observable<Response>{
     this.spinnerService.show();
-    let response = this.authService.get('/games/get_question')
+    return this.authService.get('/games/get_question')
     .map( res => {
+      this.spinnerService.hide()
       return res;
     });
-    this.spinnerService.hide();
-    return response;
   }
 
   answerQuestion(questionId: any, answerId: any):Promise<Response>{

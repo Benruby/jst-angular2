@@ -11,12 +11,10 @@ export class SpinnerService {
 	constructor() { }
 
 	show() {
-		console.log('spinner!')
 		this.spinnerSubject.next(<SpinnerState>{show: true});
 	}
 
 	hide() {
-		console.log('spinner is DONE')
 		this.spinnerSubject.next(<SpinnerState>{show: false});
 	}
 }
