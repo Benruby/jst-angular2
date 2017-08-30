@@ -19,6 +19,7 @@ const forceSSL = function() {
 // 
 // 
 app.use(forceSSL());
+app.use(require('prerender-node').set('prerenderToken', 'nLDTqmJK87BXuSIBIs4x'));
 
 const path = require('path');
 
