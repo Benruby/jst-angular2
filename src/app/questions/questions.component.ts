@@ -151,31 +151,7 @@ export class QuestionsComponent implements OnInit, DoCheck, OnDestroy {
 		this.questionService.getQuestionAnswer(questionId)
 		.then(res => {
 			this.explanation = res.json().explanation.answer_explanation;
-			this.scrollToTop(this.answerScrollPoint);
 		});
 	}
-
-	scrollToTop(element) {
-		let scroll = element.nativeElement.scrollHeight;
-		this.windowRef.nativeWindow.scrollTo(0, this.windowRef.nativeWindow.innerHeight - scroll)
-
-		// element.nativeElement.scrollIntoView(false);
-
-		// element.nativeElement.scrollTop = element.nativeElement.scrollHeight;
-
-
-		// let yOffset = window.pageYOffset;
-		// let scrollPixel = 10;
-		
-		// let scroll = setInterval(function(){
-
-		// 	if (yOffset > 0) {
-		// 		window.scrollBy(0, -scrollPixel);
-		// 		yOffset -= scrollPixel;	
-		// 	} else {
-		// 		clearInterval(scroll);
-		// 		return;
-		// 	}
-		// },15)
-	}
+	
 }
