@@ -37,8 +37,8 @@
 </div>
 </div>
 </div>
-<div class="scrollPoint" #answerScrollPoint>
-	<ul class="collapsible" data-collapsible="accordion" >
+<div class="scrollPoint">
+	<ul class="collapsible" data-collapsible="accordion">
 		<li [attr.data-question-id]="question.id">
 			<div class="collapsible-header">
 				<div>
@@ -46,7 +46,7 @@
 					<span class="wrong-answer-notif">Showing the answer will count as a wrong answer.</span>
 				</div>
 			</div>
-			<div class="collapsible-body">
+			<div class="collapsible-body" >
 				<a class="waves-effect waves-light btn right next-button"
 				(click)="nextQuestion()">Next Question</a>
 				<span
