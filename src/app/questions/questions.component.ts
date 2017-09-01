@@ -12,6 +12,7 @@ import { GameResult } from '../interfaces/game-result';
 import { AnonUserService } from 'app/services/anon-user.service';
 import { ConfigService } from 'app/config/config';
 import { WindowRef } from 'app/services/windowRef/window-ref';
+import { SpinnerService } from 'app/components/spinner/spinner.service';
 declare var $ :any;
 
 @Component({
@@ -30,7 +31,6 @@ export class QuestionsComponent implements OnInit, DoCheck, OnDestroy {
 	question: Observable<any> = new Observable();
 	result: any;
 	explanation: any;
-	disabledAnswers: boolean = false;
 	gameName: string;
 	private sub: any;
 	showEndGamePage: boolean = false
@@ -50,7 +50,8 @@ export class QuestionsComponent implements OnInit, DoCheck, OnDestroy {
 		private router:Router,
 		private anonService: AnonUserService,
 		private config: ConfigService,
-		private windowRef: WindowRef) { }
+		private windowRef: WindowRef,
+		private spinnerService: SpinnerService) { }
 
 	ngOnInit() {
 		this.counter = +localStorage.getItem('q_num') || 1;
@@ -82,8 +83,7 @@ export class QuestionsComponent implements OnInit, DoCheck, OnDestroy {
 	}
 
 	getQuestion(){
-
-		this.enableAnswer = true;
+		this.spinnerService.show();
 		return this.questionService.getQuestion()
 		.subscribe(
 			res => {
@@ -98,6 +98,8 @@ export class QuestionsComponent implements OnInit, DoCheck, OnDestroy {
 
 				if(res.status == 200){
 					this.question = res.json().question;
+					this.enableAnswer = true;
+					this.spinnerService.hide()
 					localStorage.setItem('q_num', this.counter.toString());
 				}
 			},
@@ -117,6 +119,12 @@ export class QuestionsComponent implements OnInit, DoCheck, OnDestroy {
 
 	answerQuestion(event: any): void {
 
+		/*makes sure user can't click multiple time while answering 
+		is in progress*/
+		if (!this.enableAnswer) {
+			return;
+		}
+
 		this.enableAnswer = false;
 
 		if (!this.anonService.checkIfAnonUserIsSet()) {
@@ -126,12 +134,6 @@ export class QuestionsComponent implements OnInit, DoCheck, OnDestroy {
 
 		$('.collapsible').collapsible('close', 0);
 
-		/*makes sure user can't click multiple time while answering 
-		is in progress*/
-		if (this.disabledAnswers) {
-			return;
-		}
-		this.disabledAnswers = true;
 		let answerId = event.currentTarget.dataset.answerId;
 		let questionId = event.currentTarget.dataset.questionId;
 		this.questionService.answerQuestion(questionId, answerId)
@@ -141,7 +143,6 @@ export class QuestionsComponent implements OnInit, DoCheck, OnDestroy {
 			this.nextQuestion();	
 		})
 		.then(() => {
-			this.disabledAnswers = false;
 			this.enableAnswer = true
 		})
 

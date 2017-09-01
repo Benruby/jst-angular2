@@ -24,10 +24,10 @@ export class QuestionsService {
     private spinnerService: SpinnerService) { }
 
   getQuestion():Observable<Response>{
-    this.spinnerService.show();
+    // this.spinnerService.show();
     return this.authService.get('/games/get_question')
     .map( res => {
-      this.spinnerService.hide()
+      // this.spinnerService.hide()
       return res;
     });
   }
