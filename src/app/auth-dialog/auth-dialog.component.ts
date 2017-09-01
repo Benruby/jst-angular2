@@ -1,5 +1,6 @@
 import {Component, OnInit, Input, EventEmitter} from '@angular/core';
 import {MaterializeAction} from "angular2-materialize";
+import { SpinnerService } from 'app/components/spinner/spinner.service';
 
 @Component({
   selector: 'app-auth-dialog',
@@ -11,26 +12,29 @@ export class AuthDialogComponent implements OnInit {
   @Input('auth-mode') authMode: 'login' | 'register' = 'login';
   modalActions = new EventEmitter<string|MaterializeAction>();
 
-  constructor() {
+  constructor(private spinnerService: SpinnerService) {
 
   }
 
   onLoginFormResult(e){
-
+    this.spinnerService.show();
 
     if(e.signedIn)
       this.closeDialog();
     else{
       alert(e.err.json().errors[0])
     }
+    this.spinnerService.hide();
   }
 
   onRegisterFormResult(e){
+    this.spinnerService.show();
     if(e.signedUp)
       this.closeDialog();
     else{
       alert(e.err.json().errors.full_messages[0])
     }
+    this.spinnerService.hide();
   }
 
     onPasswordReset(e){

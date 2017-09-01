@@ -49,10 +49,10 @@
       <label for="password_confirmation">Password confirmation</label>
     </div>
 
-    <span *ngIf="signUpUser.password != signUpUser.passwordConfirmation && (password_confirmation.dirty || password_confirmation.touched)"
+<!--     <span *ngIf="signUpUser.password != signUpUser.passwordConfirmation && (password_confirmation.dirty || password_confirmation.touched)"
     style="color:red">
     Passwords must match
-  </span>
+  </span> -->
 
   <recaptcha
   [hidden]="true" 

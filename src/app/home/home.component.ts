@@ -5,6 +5,7 @@ import { GamesService } from '../services/games.service';
 import {Router} from '@angular/router';
 import { Utils } from '../Utils/utils';
 import { globals } from 'environments/environment';
+import { SpinnerService } from 'app/components/spinner/spinner.service';
 
 
 @Component({
@@ -21,10 +22,13 @@ export class HomeComponent implements OnInit {
 	constructor(
 		public authService:AuthService,
 		private gamesService:GamesService,
-		private router:Router) { }
+		private router:Router,
+		private spinnerService: SpinnerService) { }
 
 	ngOnInit() {
+		this.spinnerService.show();
 		this.getGames();
+		this.spinnerService.hide();
 	}
 
 	presentAuthDialog(mode: 'login'){
@@ -45,6 +49,7 @@ export class HomeComponent implements OnInit {
 	}
 
 	startGame(gameName: string): void {
+		this.spinnerService.show();
 		this.gamesService.startGame(gameName)
 		.then(
 			res => {
@@ -54,6 +59,7 @@ export class HomeComponent implements OnInit {
 			},
 			err => {
 				this.router.navigate(['/']);
-			});
+			})
+		.then(()=> this.spinnerService.show());
 	}
 }
