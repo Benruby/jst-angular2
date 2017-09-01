@@ -54,12 +54,14 @@ export class QuestionsComponent implements OnInit, DoCheck, OnDestroy {
 		private spinnerService: SpinnerService) { }
 
 	ngOnInit() {
+		this.spinnerService.show();
+		this.getQuestion();
 		this.counter = +localStorage.getItem('q_num') || 1;
 		this.sub = this.route.params.subscribe(params => {
 			this.gameName = params['game_name']; 
 		});
-		this.getQuestion();
 		this.windowRef.nativeWindow.scrollTo(0,0);
+		this.spinnerService.hide();
 	}
 
 	ngDoCheck() {
@@ -72,6 +74,7 @@ export class QuestionsComponent implements OnInit, DoCheck, OnDestroy {
 		let self = this;
 		this.collapsible = $('.collapsible').collapsible({
 			onOpen: function(el) { 
+				self.spinnerService.show();
 				self.enableAnswer = false;
 				self.markAnswerAsInccorect(el[0].dataset.questionId);
 			}
@@ -124,11 +127,12 @@ export class QuestionsComponent implements OnInit, DoCheck, OnDestroy {
 		if (!this.enableAnswer) {
 			return;
 		}
-
+		this.spinnerService.show();
 		this.enableAnswer = false;
 
 		if (!this.anonService.checkIfAnonUserIsSet()) {
 			this.router.navigate(['/']);
+			this.spinnerService.hide();
 			return;
 		}
 
@@ -144,6 +148,7 @@ export class QuestionsComponent implements OnInit, DoCheck, OnDestroy {
 		})
 		.then(() => {
 			this.enableAnswer = true
+			this.spinnerService.hide();
 		})
 
 	}
@@ -152,6 +157,7 @@ export class QuestionsComponent implements OnInit, DoCheck, OnDestroy {
 		this.questionService.getQuestionAnswer(questionId)
 		.then(res => {
 			this.explanation = res.json().explanation.answer_explanation;
+			this.spinnerService.hide();
 		});
 	}
 	
