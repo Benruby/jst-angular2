@@ -44,11 +44,12 @@
       required
       name='password_confirmation'
       [(ngModel)]="signUpUser.passwordConfirmation"
-      class="validate">
+      class="validate"
+      #password_confirmation="ngModel">
       <label for="password_confirmation">Password confirmation</label>
     </div>
 
-    <span *ngIf="signUpUser.password != signUpUser.passwordConfirmation"
+    <span *ngIf="signUpUser.password != signUpUser.passwordConfirmation && (password_confirmation.dirty || password_confirmation.touched)"
     style="color:red">
     Passwords must match
   </span>
@@ -62,9 +63,9 @@
   <div class="col s12">
 
     <button type="submit"
-    (click)="captchaRef.execute()"
     class="waves-effect waves-light btn blue right"
     [disabled]="!(f.valid)" 
+    (click)="captchaRef.execute()"
     [ngClass]="{'disabled': !(f.valid)}" >
     Sign up
   </button>
