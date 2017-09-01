@@ -1,4 +1,4 @@
-import {Component, OnInit, EventEmitter, Output} from '@angular/core';
+import {Component, OnInit, EventEmitter, Output, ElementRef, ViewChild} from '@angular/core';
 import {AuthService} from "../services/auth/auth.service";
 
 @Component({
@@ -17,6 +17,7 @@ export class RegisterFormComponent implements OnInit {
   };
 
   @Output() onFormResult = new EventEmitter<any>();
+  @ViewChild('captchaRef') public captchaRefElement: any;
 
   constructor(private AuthService:AuthService) { }
 
@@ -39,6 +40,7 @@ export class RegisterFormComponent implements OnInit {
 
       (err) => {
         console.log(err.json())
+        this.captchaRefElement.reset();
         this.onFormResult.emit({signedUp: false, err})
       }
       )
