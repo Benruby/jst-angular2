@@ -49,6 +49,8 @@ import { WindowRef } from 'app/services/windowRef/window-ref';
 import { ConfigService } from './config/config';
 import { SpinnerComponent } from './components/spinner/spinner.component';
 import { SpinnerService } from './components/spinner/spinner.service';
+import { MessageSystemComponent } from './components/message-system/message-system.component';
+import { MessageSystemService } from './components/message-system/message-system.service';
 
 
 @NgModule({
@@ -72,6 +74,7 @@ import { SpinnerService } from './components/spinner/spinner.service';
 	ReportBugComponent,
 	BringToTopComponent,
 	SpinnerComponent,
+	MessageSystemComponent,
 	],
 	imports: [
 	BrowserModule,
@@ -94,7 +97,8 @@ import { SpinnerService } from './components/spinner/spinner.service';
 	AnonUserService,
 	WindowRef,
 	ConfigService,
-	SpinnerService
+	SpinnerService,
+	MessageSystemService
 	],
 	bootstrap: [AppComponent]
 })

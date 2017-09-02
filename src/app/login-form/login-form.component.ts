@@ -1,7 +1,7 @@
 import {Component, OnInit, Output, EventEmitter} from '@angular/core';
 import {AuthService} from "../services/auth/auth.service";
 import { FormGroup } from '@angular/forms';
-
+import { MessageSystemService } from '../components/message-system/message-system.service';
 
 @Component({
   selector: 'app-login-form',
@@ -23,7 +23,8 @@ export class LoginFormComponent implements OnInit {
   @Output() onFormResult = new EventEmitter<any>();
   @Output() onPasswordReset = new EventEmitter<any>();
   
-  constructor(public authService:AuthService) {}
+  constructor(public authService:AuthService,
+    private messageService: MessageSystemService) {}
 
   ngOnInit() {}
 
@@ -34,6 +35,7 @@ export class LoginFormComponent implements OnInit {
           if(res.status == 200){
             // this.authService.userData = JSON.parse(res.text()).data;
             this.onFormResult.emit({signedIn: true, res});
+            this.messageService.show("Logged in successfuly!");
           }
         },
         err => {

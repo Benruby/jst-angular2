@@ -1,0 +1,9 @@
+<div class="messageWrapper"
+*ngIf="show"
+[@showMessage]>
+<div class="close-icon-wrapper"
+(click)="closeMessage()"><i class="material-icons color-white close-icon">close</i></div>
+<div class="message-text-wrapper">
+	<p class="message-text color-white">{{messageText}}</p>
+</div>
+</div>

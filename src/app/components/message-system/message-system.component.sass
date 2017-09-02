@@ -1,0 +1,51 @@
+@import '../../../sass-variables.sass';
+$close-icon-wrapper-height: 15px;
+$message-text-wrapper-height: 15px;
+$border-radius: 5px;
+
+.messageWrapper
+	width: 25%;
+	min-height: 13%;
+	background-color: rgba(70, 72, 76, 0.90);
+	border-radius: $border-radius;
+	position: fixed;
+	top: 15%;
+	right: 5%;
+	z-index: 1999;
+	padding: 10px;
+	@media screen and (max-width: $small-size)
+		width: 80%;
+		right: 0;
+		left: 0;
+		margin-right: auto;
+		margin-left: auto;
+
+.message-text
+	text-align: center;
+	margin: 0px;
+	width: 95%;
+	overflow-wrap: break-word;
+
+.color-white
+	color: white;
+
+.close-icon
+	font-size: $close-icon-wrapper-height;
+	font-weight: bold;
+
+.close-icon-wrapper
+	padding: 0px 3px 0px 3px;
+	text-align: right;
+	height: $close-icon-wrapper-height;
+	transition: background-color 0.3s ease-out;
+
+.close-icon-wrapper:hover
+	cursor: pointer;
+	padding: 0px 3px 0px 3px;
+	background-color: rgba(116, 117, 119, 0.66);
+	border-radius: $border-radius;
+	transition: background-color 0.3s ease;
+	transition: border-radius 0.3s ease;
+
+.message-text-wrapper
+	padding-bottom: $close-icon-wrapper-height;

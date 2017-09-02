@@ -3,6 +3,7 @@ import {AuthDialogComponent} from "../auth-dialog/auth-dialog.component";
 import {AuthService} from "../services/auth/auth.service";
 import {Router} from "@angular/router";
 import { ReportBugComponent } from 'app/dialogs/report-bug/report-bug.component';
+import { MessageSystemService } from '../components/message-system/message-system.service';
 
 @Component({
   selector: 'app-toolbar',
@@ -17,7 +18,9 @@ export class ToolbarComponent implements OnInit {
 
   showUserDropdown: boolean = false;
 
-  constructor(public authService:AuthService, private router:Router) { }
+  constructor(public authService:AuthService,
+   private router:Router,
+   private messageService: MessageSystemService) { }
 
   ngOnInit(){}
 
@@ -25,6 +28,7 @@ export class ToolbarComponent implements OnInit {
 
   logOut(){
     this.authService.logOutUser().subscribe(() => this.router.navigate(['/']));
+    this.messageService.show("Logged out successfuly!");
   }
 
   presentAuthDialog(mode?: 'login'| 'register'){
@@ -42,7 +46,6 @@ export class ToolbarComponent implements OnInit {
 
   presentReportBugDialog() {
     this.reportBugDialog.openDialog();
-    // console.log("this is the DIALOG!!!")
   }
 
 }
