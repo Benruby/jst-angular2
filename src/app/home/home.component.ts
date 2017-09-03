@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import {AuthService} from "../services/auth/auth.service";
 import {AuthDialogComponent} from "../auth-dialog/auth-dialog.component";
 import { GamesService } from '../services/games.service';
@@ -13,7 +13,7 @@ import { SpinnerService } from 'app/components/spinner/spinner.service';
 	templateUrl: './home.component.html',
 	styleUrls: ['./home.component.sass']
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, AfterViewInit {
 
 	@ViewChild('authDialog') authDialog: AuthDialogComponent;
 
@@ -29,6 +29,10 @@ export class HomeComponent implements OnInit {
 		this.spinnerService.show();
 		this.getGames();
 		this.spinnerService.hide();
+	}
+
+	ngAfterViewInit(){
+		(<any>window).prerenderReady = true;
 	}
 
 	presentAuthDialog(mode: 'login'){

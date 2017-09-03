@@ -20,6 +20,7 @@ const forceSSL = function() {
 // 
 app.use(forceSSL());
 app.use(require('prerender-node').set('prerenderToken', 'nLDTqmJK87BXuSIBIs4x'));
+app.use(require('prerender-node').set('protocol', 'https'));
 
 const path = require('path');
 
