@@ -32,7 +32,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
 	}
 
 	ngAfterViewInit(){
-		(<any>window).prerenderReady = true;
+		// (<any>window).prerenderReady = true;
 	}
 
 	presentAuthDialog(mode: 'login'){
