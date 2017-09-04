@@ -42,14 +42,22 @@
 				<label for="reportBugTextArea">Describe what happened.</label>
 			</div>
 			<div class="modal-footer">
-				<button href="#!" class="modal-action modal-close waves-effect waves-green btn-flat"
+
+				<recaptcha
+				[hidden]="true"
+				(resolved)="$event && reportBug($event)" 
+				siteKey="6LfbfSsUAAAAAIH0hlftK66MybqJEiGeS-nXgQjj"
+				size="invisible"
+				#captchaRef="reCaptcha"></recaptcha>
+
+				<button class="modal-action waves-effect waves-green btn-flat"
 				type="submit"
 				(click)="captchaRef.execute()"
 				[disabled]="!(f.valid)" 
 				[ngClass]="{'disabled': !(f.valid)}" 
 				>Submit</button>
 
-				<a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">cancel</a>
+				<a class="modal-action modal-close waves-effect waves-green btn-flat">cancel</a>
 			</div>
 
 
@@ -57,10 +65,4 @@
 
 	</div>
 </form>
-<recaptcha
-[hidden] ="true"
-(resolved)="$event && reportBug($event)" 
-siteKey="6LfbfSsUAAAAAIH0hlftK66MybqJEiGeS-nXgQjj"
-size="invisible"
-#captchaRef="reCaptcha"></recaptcha>
 </div>
