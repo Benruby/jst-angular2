@@ -8,6 +8,7 @@ import {ForgotpasswordComponent} from "./forgotpassword/forgotpassword.component
 import { SubmitQuestionComponent } from './components/submit-question/submit-question.component';
 import {AuthGuard} from "./guards/auth.guard";
 import {AnonUserGuard} from "./guards/anon.user.guard";
+import { QAndAModeComponent } from './q-and-a-mode/q-and-a-mode.component';
 
 const routes: Routes = [
 {
@@ -46,10 +47,10 @@ const routes: Routes = [
 	path: 'forgotpassword',
 	component: ForgotpasswordComponent
 },
-// {
-// 	path: 'submit_question',
-// 	component: SubmitQuestionComponent
-// }
+{
+	path: 'learn/:game_name',
+	component: QAndAModeComponent
+}
 ];
 
 @NgModule({

@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CoreModule } from './core/core.module';
-
+import { UrlSerializer, DefaultUrlSerializer } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
@@ -42,6 +42,7 @@ import { RecaptchaNoFormsModule } from 'ng2-recaptcha/ng2-recaptcha.noforms';
 import { ReportBugComponent } from './dialogs/report-bug/report-bug.component';
 import { ReportBugService } from './services/report-bug.service';
 import { Utils } from './Utils/utils';
+import { CustomUrlSerializer } from './Utils/custom-url-serializer/custom-url-serializer';
 import { AnonUserService } from './services/anon-user.service';
 import { BringToTopComponent } from './components/bring-to-top/bring-to-top.component';
 
@@ -51,6 +52,8 @@ import { SpinnerComponent } from './components/spinner/spinner.component';
 import { SpinnerService } from './components/spinner/spinner.service';
 import { MessageSystemComponent } from './components/message-system/message-system.component';
 import { MessageSystemService } from './components/message-system/message-system.service';
+import { QAndAModeComponent } from './q-and-a-mode/q-and-a-mode.component';
+import { SelectGameComponent } from './q-and-a-mode/select-game/select-game.component';
 
 
 @NgModule({
@@ -75,6 +78,8 @@ import { MessageSystemService } from './components/message-system/message-system
 	BringToTopComponent,
 	SpinnerComponent,
 	MessageSystemComponent,
+	QAndAModeComponent,
+	SelectGameComponent
 	],
 	imports: [
 	BrowserModule,
@@ -98,7 +103,9 @@ import { MessageSystemService } from './components/message-system/message-system
 	WindowRef,
 	ConfigService,
 	SpinnerService,
-	MessageSystemService
+	MessageSystemService,
+	DefaultUrlSerializer,
+	[{ provide: UrlSerializer, useClass: CustomUrlSerializer }],
 	],
 	bootstrap: [AppComponent]
 })

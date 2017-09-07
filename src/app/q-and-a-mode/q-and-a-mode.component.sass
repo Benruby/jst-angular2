@@ -1,0 +1,30 @@
+@import '../../sass-variables.sass';
+
+.innerHeader
+	color: $headers-color;
+
+.game-name-list
+	position: relative;
+
+.game-name-item
+	padding: 5px 2px 5px 2px;
+	border-radius: 2px;
+
+	&:hover
+		background-color: rgba(0, 0, 0, 0.1);
+
+.gamesSideSectionHeader
+	border-bottom: 1px solid $headers-color;
+
+.gamesListWrapper
+	@media screen and (max-width: $medium-size)
+		display: none;
+
+.contentSection
+	@media screen and (max-width: $medium-size)
+		width: 100%;
+
+.modeDescription
+	font-size: 1.2em;
+	color: $headers-color;
+	margin-bottom: 15px;

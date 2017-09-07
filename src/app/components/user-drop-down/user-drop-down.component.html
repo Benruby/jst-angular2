@@ -7,27 +7,30 @@ class="user-dropdown-main-wrapper dropdown-box-shadow"
 	<a (click)="presentAuthDialog()" >LOGIN</a></li>
 
 	<li class="dropdown-item medium-screen-menu-item"><a 
-            (click)="presentAuthDialog()"
-            *ngIf="!(authService.userData)">
-            Save Your Results</a></li>
+		(click)="presentAuthDialog()"
+		*ngIf="!(authService.userData)">
+		Save Your Results</a></li>
 
+		<li class="dropdown-item"
+		*ngIf="(authService.userData)">
+		<a [routerLink]="['/profile']">
+			Profile</a>
+		</li>
+		<li class="dropdown-item medium-screen-menu-item">
+			<a [routerLink]="['/games']">More Games</a>
+		</li>
+		<li class="dropdown-item">
+		<a [routerLink]="['/learn', defaultGame]">Free Reading Mode</a>
+		</li>
+		<li class="dropdown-item"
+		*ngIf="(authService.userData)">
+		<a [routerLink]="">My Stats - Coming Soon!</a>
+	</li>
+	<li class="dropdown-item">
+		<a (click)="presentReportBugDialog()">Report an Issue</a>
+	</li>
 	<li class="dropdown-item"
 	*ngIf="(authService.userData)">
-	<a [routerLink]="['/profile']">
-		Profile</a>
-	</li>
-	<li class="dropdown-item medium-screen-menu-item">
-		<a [routerLink]="['/games']">More Games</a>
-	</li>
-	<li class="dropdown-item"
-	*ngIf="(authService.userData)">
-	<a [routerLink]="">My Stats - Coming Soon!</a>
-</li>
-<li class="dropdown-item">
-	<a (click)="presentReportBugDialog()">Report an Issue</a>
-</li>
-<li class="dropdown-item"
-*ngIf="(authService.userData)">
-<a (click)="logoutUser()">Logout</a>
+	<a (click)="logoutUser()">Logout</a>
 </li>
 </ul>

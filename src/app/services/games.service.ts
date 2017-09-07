@@ -24,7 +24,7 @@ export class GamesService {
 			num_of_games: num_of_games
 		};
 
-				//only if user isn't signed in.
+		//only if user isn't signed in.
 		// requestOptions.body.user_token = "ewr34r34rf3f34rt3";
 
 		return this.authService.get('/games/get_num_games', {search: requestOptions})
@@ -44,21 +44,31 @@ export class GamesService {
 	}
 
 	// checkIfGameIsPlayed(game_id: number) {
-	// 	/**
-	// 	 * get the game id.
-	// 	 * ask the server if the user has this game.
-	// 	 * is user has it, get the last.
-	// 	 * if finished, get the score.
-	// 	 * show an icon to user.
-	// 	 */
-	// 	let requestOptions = new RequestOptions();
-	// 	requestOptions.body = {
-	// 		game_id: game_id
-	// 	};
+		// 	/**
+		// 	 * get the game id.
+		// 	 * ask the server if the user has this game.
+		// 	 * is user has it, get the last.
+		// 	 * if finished, get the score.
+		// 	 * show an icon to user.
+		// 	 */
+		// 	let requestOptions = new RequestOptions();
+		// 	requestOptions.body = {
+			// 		game_id: game_id
+			// 	};
 
-	// 	return this.authService.get('/games/start_game', {search: requestOptions})
-	// 	.toPromise()
-	// 	.then(response => response);
-	// }
+			// 	return this.authService.get('/games/start_game', {search: requestOptions})
+			// 	.toPromise()
+			// 	.then(response => response);
+			// }
 
-}
+	/**
+	 * the method return a list of games.
+	 * avail properties are id and name of the game. 
+	 */
+	 getGamesNames(){
+	 	return this.authService.get('/games/get_games_names')
+	 	.toPromise()
+	 	.then(response => response);
+	 }
+
+	}

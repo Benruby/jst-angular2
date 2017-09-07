@@ -39,7 +39,7 @@ export class QuestionsService {
       question_id: questionId,
       answer_id: answerId
     };
-  
+    
 
     return this.authService.get('games/answer_question', {search: requestOptions})
     .toPromise()
@@ -53,9 +53,24 @@ export class QuestionsService {
       question_id: questionId
     };
 
-     return this.authService.get('games/get_question_answer', {search: requestOptions})
+    return this.authService.get('games/get_question_answer', {search: requestOptions})
     .toPromise()
     .then(response => response);
 
   }
-}
+
+  /**
+   * the method returns all questions of a complete game
+   * @param {string} gameName [game name, to be returned from db.]
+   */
+   getGameQuestions(gameName: string){
+
+     let requestOptions = new RequestOptions();
+     requestOptions.body = {
+       game_name: gameName
+     };
+     return this.authService.get('questions/get_qestions_by_game', {search: requestOptions})
+     .toPromise()
+     .then(response => response);
+   }
+ }

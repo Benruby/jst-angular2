@@ -15,6 +15,8 @@ export class UserDropDownComponent implements OnInit {
   @Output() showReportBugDialog: EventEmitter<boolean> = new EventEmitter();
   @Output() authDialog: EventEmitter<boolean> = new EventEmitter();
 
+  defaultGame: string = "Know Your Roots";
+
   constructor(public authService:AuthService) { }
 
   ngOnInit() {
