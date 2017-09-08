@@ -9,6 +9,7 @@
 .game-name-item
 	padding: 5px 2px 5px 2px;
 	border-radius: 2px;
+	color: $link-color;
 
 	&:hover
 		background-color: rgba(0, 0, 0, 0.1);
@@ -28,3 +29,7 @@
 	font-size: 1.2em;
 	color: $headers-color;
 	margin-bottom: 15px;
+
+.selectGameMobileLink
+	@media screen and (min-width: $medium-size)
+		display: none;

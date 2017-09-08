@@ -16,18 +16,17 @@
 	</ul>
 </div>
 <div class="contentSection width-70-pc float-right">
-	<h5 class="gamesSideSectionHeader">Questions</h5>
+	<h5 class="gamesSideSectionHeader">Questions
+		<a (click)="presentSelectGameDialog()" class="selectGameMobileLink float-right pointer">Select a Game</a>
+	</h5>
 	<div #questionsCollpsibles *ngFor="let q of questions; last as isLast">
 		<ul class="collapsible" data-collapsible="accordion">
-			<!-- <li [attr.data-question-id]="question.id"> -->
 			<li>
 				<div class="collapsible-header">
 					<div>
 						<i class="material-icons">help</i>
 
 						<span [innerHtml]="q.body"></span>
-
-						<!-- <span class="wrong-answer-notif">Showing the answer will count as a wrong answer.</span> -->
 					</div>
 				</div>
 				<div class="collapsible-body" >
@@ -49,6 +48,9 @@
 </div>
 </div>
 
+<app-select-game 
+ #selectGameDialog
+ [gamesNamesList]="gamesNames"></app-select-game>
 <app-bring-to-top
-  [scrollInterval]="40"
+[scrollInterval]="40"
 ></app-bring-to-top>

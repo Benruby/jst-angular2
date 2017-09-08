@@ -1,3 +1,29 @@
-<p>
-  select-game works!
-</p>
+<div class="modal" materialize="modal" [materializeActions]="modalActions">
+
+	<div class="modal-content">
+
+		<div class="row">
+
+			<div class="row">
+
+				<span class="modal-close right">
+					<i class="fa fa-times" aria-hidden="true"></i>
+				</span>
+			</div>
+			<h5 class="gamesSideSectionHeader">Games:</h5>
+			<ul class="game-name-list">
+				<li *ngFor="let item of gamesNamesList"
+				class="game-name-item pointer"
+				[routerLink]="['/learn', item.name]">
+				{{item.name}}
+			</li>
+		</ul>
+<!-- <ul>
+	<li *ngFor="let item of gamesNamesList">
+	{{item.name}}
+	</li>
+</ul> -->
+</div>
+</div>
+
+</div>

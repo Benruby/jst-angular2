@@ -4,10 +4,15 @@ import {
 	OnInit,
 	AfterViewInit,
 	QueryList,
+	Output,
+	ViewChild,
+	EventEmitter,
 	OnDestroy } from '@angular/core';
 	import { ActivatedRoute } from '@angular/router';
 	import { QuestionsService } from '../services/questions.service';
 	import { GamesService } from '../services/games.service';
+	import { SelectGameComponent } from './select-game/select-game.component';
+	import { SpinnerService } from 'app/components/spinner/spinner.service';
 	declare var $ :any;
 
 	@Component({
@@ -21,17 +26,21 @@ import {
 		gamesNames: any[] = [];
 		private gameNameParam: any;
 
+		@ViewChild('selectGameDialog') selectGameDialog: SelectGameComponent;
 		@ViewChildren('questionsCollpsibles') quesCol: QueryList<any>;
+		@Output() showGameSelectionDialog: EventEmitter<boolean> = new EventEmitter();
+
 
 		constructor(
 			private questionsService: QuestionsService,
 			private gamesService: GamesService,
-			private route: ActivatedRoute
+			private route: ActivatedRoute,
+			private spinnerService: SpinnerService
 			) { }
 
 
 		ngOnInit() {
-
+			this.spinnerService.show();
 			this.gamesService.getGamesNames()
 			.then((res) => {
 				console.log(res.json().games);
@@ -52,15 +61,25 @@ import {
 		}
 
 		getQuestionsForGame(gameName: string){
+			this.spinnerService.show();
 			this.questionsService.getGameQuestions(gameName)
 			.then((res)=> {
-				console.log(res.json());
 				this.questions = res.json().questions;
+				this.selectGameDialog.closeDialog();
+				this.spinnerService.hide();
 			});
 		}
 
-		ngOnDestroy() {
-			this.gameNameParam.unsubscribe();
-		}
+		/**
+		 * the method presents dialog for the user to select a game.
+		 * the dialog is only relevant to mobile devices view.
+		 */
+		 presentSelectGameDialog(){
+		 	this.selectGameDialog.openDialog()
+		 }
 
-	}
+		 ngOnDestroy() {
+		 	this.gameNameParam.unsubscribe();
+		 }
+
+		}

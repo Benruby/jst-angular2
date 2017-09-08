@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { AuthService } from "app/services/auth/auth.service";
-
+import { defaultGame } from 'environments/environment';
 
 @Component({
   selector: 'app-user-drop-down',
@@ -15,12 +15,11 @@ export class UserDropDownComponent implements OnInit {
   @Output() showReportBugDialog: EventEmitter<boolean> = new EventEmitter();
   @Output() authDialog: EventEmitter<boolean> = new EventEmitter();
 
-  defaultGame: string = "Know Your Roots";
+  defaultGame: string = defaultGame;
 
   constructor(public authService:AuthService) { }
 
   ngOnInit() {
-    console.log(this.authService.userSignedIn$);
   }
 
   closeDropDown() {
