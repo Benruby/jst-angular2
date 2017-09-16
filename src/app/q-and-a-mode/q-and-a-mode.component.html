@@ -20,37 +20,42 @@
 		<a (click)="presentSelectGameDialog()" class="selectGameMobileLink float-right pointer">Select a Game</a>
 	</h5>
 	<div #questionsCollpsibles *ngFor="let q of questions; last as isLast">
-		<ul class="collapsible" data-collapsible="accordion">
-			<li>
-				<div class="collapsible-header">
-					<div>
-						<i class="material-icons">help</i>
+		<ul class="collapsible" data-collapsible="accordion"
+		itemscope
+		itemtype="http://schema.org/Question"
+		itemprop="text">
+		<li>
+			<div class="collapsible-header">
+				<div>
+					<i class="material-icons">help</i>
 
-						<span [innerHtml]="q.body"></span>
-					</div>
+					<span [innerHtml]="q.body" 
+					></span>
 				</div>
-				<div class="collapsible-body" >
-					<p class="innerHeader">
-						answer:
-					</p>
-					<span [innerHtml]="q.correntAnswer.body">
+			</div>
+			<div class="collapsible-body" >
+				<p class="innerHeader">
+					answer:
+				</p>
+				<span [innerHtml]="q.correntAnswer.body">
 
-					</span>
-					<p class="innerHeader">
-						explanation:
-					</p>
-					<span
-					[innerHtml]="q.answer_explanation"></span>
-				</div>
-			</li>
-		</ul>
-	</div>
+				</span>
+				<p class="innerHeader">
+					explanation:
+				</p>
+				<span
+				[innerHtml]="q.answer_explanation"
+				itemprop="suggestedAnswer" itemscope itemtype="http://schema.org/Answer"></span>
+			</div>
+		</li>
+	</ul>
+</div>
 </div>
 </div>
 
 <app-select-game 
- #selectGameDialog
- [gamesNamesList]="gamesNames"></app-select-game>
+#selectGameDialog
+[gamesNamesList]="gamesNames"></app-select-game>
 <app-bring-to-top
 [scrollInterval]="40"
 ></app-bring-to-top>

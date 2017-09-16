@@ -13,6 +13,7 @@ import { AnonUserService } from 'app/services/anon-user.service';
 import { ConfigService } from 'app/config/config';
 import { WindowRef } from 'app/services/windowRef/window-ref';
 import { SpinnerService } from 'app/components/spinner/spinner.service';
+import { Title } from '@angular/platform-browser';
 declare var $ :any;
 
 @Component({
@@ -51,7 +52,8 @@ export class QuestionsComponent implements OnInit, DoCheck, OnDestroy {
 		private anonService: AnonUserService,
 		private config: ConfigService,
 		private windowRef: WindowRef,
-		private spinnerService: SpinnerService) { }
+		private spinnerService: SpinnerService,
+		private titleService: Title) { }
 
 	ngOnInit() {
 		this.spinnerService.show();
@@ -59,6 +61,7 @@ export class QuestionsComponent implements OnInit, DoCheck, OnDestroy {
 		this.counter = +localStorage.getItem('q_num') || 1;
 		this.sub = this.route.params.subscribe(params => {
 			this.gameName = params['game_name']; 
+			this.titleService.setTitle("JavaScript - " + this.gameName);
 		});
 		this.windowRef.nativeWindow.scrollTo(0,0);
 		this.spinnerService.hide();
@@ -81,13 +84,15 @@ export class QuestionsComponent implements OnInit, DoCheck, OnDestroy {
 		});
 	}
 
-	ngOnDestroy(){
-		localStorage.setItem('q_num', "0");
+	closeSpinnerAndEnableAnswers(){
+		this.enableAnswer = true;
+		this.spinnerService.hide();
 	}
 
 	getQuestion(){
 		this.spinnerService.show();
 		return this.questionService.getQuestion()
+		.finally(() => this.closeSpinnerAndEnableAnswers())
 		.subscribe(
 			res => {
 
@@ -95,18 +100,17 @@ export class QuestionsComponent implements OnInit, DoCheck, OnDestroy {
 					this.results.numOfQuestions = res.json().num_of_questions;
 					this.results.numOfCorrectAnswers = res.json().correct_answers;
 					this.results.gameScore = res.json().score;
-					this.showEndGamePage= true;
+					this.showEndGamePage = true;
 					return;
 				}
 
 				if(res.status == 200){
 					this.question = res.json().question;
-					this.enableAnswer = true;
-					this.spinnerService.hide()
 					localStorage.setItem('q_num', this.counter.toString());
 				}
 			},
 			err => {
+				this.spinnerService.hide();
 				this.router.navigate(['/']);
 			});
 	}
@@ -116,7 +120,6 @@ export class QuestionsComponent implements OnInit, DoCheck, OnDestroy {
 		this.getQuestion();
 		if (this.config.shouldScrollPage()) {
 			this.windowRef.nativeWindow.scrollTo(0,0)
-
 		}
 	}
 
@@ -145,12 +148,10 @@ export class QuestionsComponent implements OnInit, DoCheck, OnDestroy {
 			this.result = res.json();
 			this.counter++;
 			this.nextQuestion();	
+		}, err => {
+			this.closeSpinnerAndEnableAnswers();
+			this.router.navigate(['/']);
 		})
-		.then(() => {
-			this.enableAnswer = true
-			this.spinnerService.hide();
-		})
-
 	}
 
 	markAnswerAsInccorect(questionId) {
@@ -159,6 +160,11 @@ export class QuestionsComponent implements OnInit, DoCheck, OnDestroy {
 			this.explanation = res.json().explanation.answer_explanation;
 			this.spinnerService.hide();
 		});
+	}
+
+	ngOnDestroy(){
+		localStorage.setItem('q_num', "0");
+		this.titleService.setTitle("Web Questions - Test Your Skills");
 	}
 	
 }
