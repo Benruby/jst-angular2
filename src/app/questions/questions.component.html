@@ -14,6 +14,9 @@
 			<div>
 				<div class="card-content question-card"
 				highlight-js
+				itemscope
+				itemtype="http://schema.org/Question"
+				itemprop="text"
 				[highlightContent]="question.body">
 			</div>
 		</div>
@@ -29,10 +32,13 @@
 		(click)="enableAnswer && answerQuestion($event)"
 		[attr.data-answer-id]="answer.id"
 		[attr.data-question-id]="question.id">
-		<span class="white-text card-text">
-			{{answer.body}}
-		</span>
-	</div>
+		<span class="white-text card-text"
+		itemprop="suggestedAnswer"
+		itemscope
+		itemtype="http://schema.org/Answer">
+		{{answer.body}}
+	</span>
+</div>
 </div>
 </div>
 </div>

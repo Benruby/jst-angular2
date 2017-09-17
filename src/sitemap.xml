@@ -1,5 +1,8 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 	<url>
+		<loc>https://www.webquestions.co/apple-app-site-association</loc>
+	</url>
+	<url>
 		<loc>https://www.webquestions.co/learn/Strings-01</loc>
 	</url>
 	<url>
@@ -7,9 +10,6 @@
 	</url>
 	<url>
 		<loc>https://www.webquestions.co/learn/The-&apos;this&apos;-keyword-01.</loc>
-	</url>
-	<url>
-		<loc>https://www.webquestions.co/Strings-01</loc>
 	</url>
 	<url>
 		<loc>https://www.webquestions.co/learn/The-%2527this%2527-keyword-01.</loc>
@@ -21,6 +21,9 @@
 		<loc>https://www.webquestions.co/games</loc>
 	</url>
 	<url>
+		<loc>https://www.webquestions.co/.well-known/apple-app-site-association</loc>
+	</url>
+	<url>
 		<loc>Https://www.webquestions.co/home</loc>
 	</url>
 	<url>
@@ -30,6 +33,30 @@
 		<loc>https://www.webquestions.co/home</loc>
 	</url>
 	<url>
+		<loc>https://www.webquestions.co/Strings-01</loc>
+	</url>
+	<url>
+		<loc>https://www.webquestions.co/learn/JavaScript-Know-The-Basics</loc>
+	</url>
+	<url>
 		<loc>https://www.webquestions.co/</loc>
+	</url>
+	<url>
+		<loc>https://www.webquestions.co/questions/The-%2527this%2527-keyword-01-Warm-up</loc>
+	</url>
+	<url>
+		<loc>https://www.webquestions.co/questions/The-&apos;this&apos;-keyword-01-Warm-up</loc>
+	</url>
+	<url>
+		<loc>https://www.webquestions.co/learn/The-&apos;this&apos;-keyword-01-Warm-up</loc>
+	</url>
+	<url>
+		<loc>https://www.webquestions.co/learn/The-%2527this%2527-keyword-01-Warm-up</loc>
+	</url>
+	<url>
+		<loc>https://www.webquestions.co/home/</loc>
+	</url>
+	<url>
+		<loc>https://jst-fe.herokuapp.com/</loc>
 	</url>
 </urlset>
