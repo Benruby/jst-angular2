@@ -41,7 +41,6 @@ export class ForgotpasswordComponent implements OnInit {
 				}
 			},
 			err => {
-				console.log('err:', err);
 			}
 			);
 	}

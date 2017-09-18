@@ -65,7 +65,6 @@ export class AuthService {
       email: userEmail,
     }).map(
     res =>  { 
-      console.log(res);
       this.userSignedIn$.next(false);
       return res;
     })
@@ -80,7 +79,6 @@ export class AuthService {
   :Observable<Response>{
     return this.authService.updatePassword(userResetPasswordData).map(
       res =>  { 
-        console.log(res);
         this.userSignedIn$.next(false);
         return res;
       })

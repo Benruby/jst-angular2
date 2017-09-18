@@ -40,7 +40,6 @@ export class HomeComponent implements OnInit {
 		.then(
 			res => {
 				if(res.status == 200){
-					console.log(res.json())
 					this.games = res.json().games;
 				}
 			},

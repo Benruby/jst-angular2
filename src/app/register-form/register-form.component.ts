@@ -39,16 +39,10 @@ export class RegisterFormComponent implements OnInit {
       },
 
       (err) => {
-        console.log(err.json())
         this.captchaRefElement.reset();
         this.onFormResult.emit({signedUp: false, err})
       }
       )
 
   }
-
-  // resolvedCaptcha(captchaResponse: string) {
-  //   // console.log(`Resolved captcha with response ${captchaResponse}:`);
-  //   this.signUpUser["g-recaptcha-response"] = captchaResponse;
-  // }
 }

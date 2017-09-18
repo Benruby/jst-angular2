@@ -18,6 +18,5 @@
  		globals.anon_token = anonToken;
  		globals.setAnonToken();
  		localStorage.setItem('anon_user_token', anonToken);
- 		console.log(anonToken);
  	}
  }

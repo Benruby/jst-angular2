@@ -53,12 +53,8 @@ export class JsHighlight implements OnInit {
 		}
 
 		if (data.includes(".log")) {
-			tempString = tempString.replace(/.log/g, '<span>.</span><span class="logStyle">log</span>')
+			tempString = tempString.replace(/\.log/g, '<span>.</span><span class="logStyle">log</span>')
 		}
-
-		// if (data.includes("function")) {
-		// 	tempString = tempString.replace(/(?=.*function)()/g, '<span class="functionStyle">function</span>')
-		// }
 
 		//change keyword function when row ends with '{'
 		if (data.includes("function(")) {

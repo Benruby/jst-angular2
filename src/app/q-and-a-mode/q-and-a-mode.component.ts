@@ -13,6 +13,7 @@ import {
 	import { GamesService } from '../services/games.service';
 	import { SelectGameComponent } from './select-game/select-game.component';
 	import { SpinnerService } from 'app/components/spinner/spinner.service';
+	import { Title, Meta } from '@angular/platform-browser';
 	declare var $ :any;
 
 	@Component({
@@ -25,6 +26,7 @@ import {
 		questions: any[] = [];
 		gamesNames: any[] = [];
 		private gameNameParam: any;
+		gameName: any;
 
 		@ViewChild('selectGameDialog') selectGameDialog: SelectGameComponent;
 		@ViewChildren('questionsCollpsibles') quesCol: QueryList<any>;
@@ -35,7 +37,9 @@ import {
 			private questionsService: QuestionsService,
 			private gamesService: GamesService,
 			private route: ActivatedRoute,
-			private spinnerService: SpinnerService
+			private spinnerService: SpinnerService,
+			private metaService: Meta,
+			private titleService: Title
 			) { }
 
 
@@ -43,13 +47,12 @@ import {
 			this.spinnerService.show();
 			this.gamesService.getGamesNames()
 			.then((res) => {
-				console.log(res.json().games);
 				this.gamesNames = res.json().games;
 			})
 
 			this.gameNameParam = this.route.params.subscribe(params => {
-				let nameParam = params['game_name'];
-				this.getQuestionsForGame(nameParam)		
+				this.gameName = params['game_name'];
+				this.getQuestionsForGame(this.gameName);		
 			});
 		}
 
@@ -67,6 +70,9 @@ import {
 				this.questions = res.json().questions;
 				this.selectGameDialog.closeDialog();
 				this.spinnerService.hide();
+			}).then(() => {
+				this.titleService.setTitle("JavaScript - " + this.gameName);
+				this.metaService.updateTag({ name: "description", content: this.questions[0].game_long_description})
 			});
 		}
 

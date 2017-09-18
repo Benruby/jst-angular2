@@ -39,7 +39,6 @@ export class LoginFormComponent implements OnInit {
           }
         },
         err => {
-          console.log('err:', err);
           this.onFormResult.emit({signedIn: false, err});
         }
     );
@@ -49,7 +48,6 @@ export class LoginFormComponent implements OnInit {
   resetPassword(personForm: FormGroup){
     if(!personForm.controls.email.valid){
       this.showValidationMessage = true;
-      console.log(!personForm.controls.email.valid)
       return;
     }
     this.showResetSuccess();
