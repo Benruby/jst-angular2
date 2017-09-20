@@ -34,25 +34,23 @@
 					></span>
 				</div>
 			</div>
-			<div class="collapsible-body"
-			itemscope
-			itemtype="http://schema.org/Answer" >
-			<p class="innerHeader">
-				answer
-			</p>
-			<span [innerHtml]="q.correntAnswer.body"
-			itemprop="text">
+			<div class="collapsible-body" >
+				<p class="innerHeader">
+					answer
+				</p>
+				<span [innerHtml]="q.correntAnswer.body">
 
-			</span>
-			<p class="innerHeader">
-				explanation
-			</p>
-			<span
-			[innerHtml]="q.answer_explanation"
-			itemprop="text"></span>
-		</div>
-	</li>
-</ul>
+				</span>
+				<p class="innerHeader">
+					explanation
+				</p>
+				<span
+				[innerHtml]="q.answer_explanation"
+				itemprop="text"
+				itemprop="suggestedAnswer" itemscope itemtype="http://schema.org/Answer"></span>
+			</div>
+		</li>
+	</ul>
 </div>
 </div>
 </div>
