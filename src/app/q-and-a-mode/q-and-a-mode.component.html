@@ -7,15 +7,16 @@
 	</p>
 	<div class="gamesListWrapper width-20-pc float-left">
 		<h5 class="gamesSideSectionHeader">Games:</h5>
-		<div class="game-name-list">
-			<div *ngFor="let g of gamesNames">	
-				<a 
-				class="game-name-item pointer"
-				[routerLink]="['/learn', g.name]"
-				[innerHtml]="g.name">
+		<ul class="game-name-list">
+			<li *ngFor="let g of gamesNames"
+			class="game-name-item pointer"
+			>
+			<a [routerLink]="['/learn', g.name]">
+				{{g.name}}
 			</a>
-		</div>
-	</div>
+			
+		</li>
+	</ul>
 </div>
 <div class="contentSection width-70-pc float-right">
 	<h5 class="gamesSideSectionHeader">Questions
