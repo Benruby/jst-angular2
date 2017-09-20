@@ -6,19 +6,14 @@
 		In this mode, all questions, answers and explanations are available without playing a game and keeping score.
 	</p>
 	<div class="gamesListWrapper width-20-pc float-left">
-		<h5 class="gamesSideSectionHeader">Games:</h5>
-		<div *ngFor="let g of gamesNames">
-			<ul >
-			<li
-				
-				>
-				<a [routerLink]="['/learn', g.name]">
-					{{g.name}}
-				</a>
-
-			</li>
-		</ul>
-	</div>
+		<h5 class="gamesSideSectionHeader">Games</h5>
+		<ul class="game-name-list">
+			<li *ngFor="let g of gamesNames"
+			class="game-name-item pointer"
+			[routerLink]="['/learn', g.name]">
+			{{g.name}}
+		</li>
+	</ul>
 </div>
 <div class="contentSection width-70-pc float-right">
 	<h5 class="gamesSideSectionHeader">Questions
@@ -41,13 +36,13 @@
 			</div>
 			<div class="collapsible-body" >
 				<p class="innerHeader">
-					answer:
+					answer
 				</p>
 				<span [innerHtml]="q.correntAnswer.body">
 
 				</span>
 				<p class="innerHeader">
-					explanation:
+					explanation
 				</p>
 				<span
 				[innerHtml]="q.answer_explanation"
