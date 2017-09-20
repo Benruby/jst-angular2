@@ -11,8 +11,8 @@
 			<div *ngFor="let g of gamesNames">	
 				<a 
 				class="game-name-item pointer"
-				[routerLink]="['/learn', g.name]">
-				{{g.name}}
+				[routerLink]="['/learn', g.name]"
+				[innerHtml]="g.name">
 			</a>
 		</div>
 	</div>
