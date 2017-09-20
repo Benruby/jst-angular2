@@ -46,10 +46,7 @@ import {
 		ngOnInit() {
 			this.spinnerService.show();
 
-			this.gameNameParam = this.route.params.subscribe(params => {
-				this.gameName = params['game_name'];
-				this.getQuestionsForGame(this.gameName);		
-			});
+
 		}
 
 		ngAfterViewInit(): void {
@@ -57,6 +54,10 @@ import {
 				//init the collapsibles after game change.
 				$('.collapsible').collapsible();	
 			})
+			this.gameNameParam = this.route.params.subscribe(params => {
+				this.gameName = params['game_name'];
+				this.getQuestionsForGame(this.gameName);		
+			});
 		}
 
 		getQuestionsForGame(gameName: string){
