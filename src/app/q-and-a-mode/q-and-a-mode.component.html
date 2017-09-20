@@ -10,8 +10,8 @@
 		<ul class="game-name-list">
 			<a *ngFor="let g of gamesNames"
 			class="game-name-item pointer"
-			[routerLink]="['/learn', g.name]">
-			{{g.name}}
+			[routerLink]="['/learn', g.name]"
+			[innerHtml]="g.name">
 		</a>
 	</ul>
 </div>
