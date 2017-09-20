@@ -45,10 +45,6 @@ import {
 
 		ngOnInit() {
 			this.spinnerService.show();
-			this.gamesService.getGamesNames()
-			.then((res) => {
-				this.gamesNames = res.json().games;
-			})
 
 			this.gameNameParam = this.route.params.subscribe(params => {
 				this.gameName = params['game_name'];
@@ -74,6 +70,11 @@ import {
 				this.titleService.setTitle("JavaScript - " + this.gameName);
 				this.metaService.updateTag({ name: "description", content: this.questions[0].game_long_description})
 			});
+
+			this.gamesService.getGamesNames()
+			.then((res) => {
+				this.gamesNames = res.json().games;
+			})
 		}
 
 		/**
