@@ -45,8 +45,15 @@ import {
 
 		ngOnInit() {
 			this.spinnerService.show();
+			this.gamesService.getGamesNames()
+			.then((res) => {
+				this.gamesNames = res.json().games;
+			})
 
-
+			this.gameNameParam = this.route.params.subscribe(params => {
+				this.gameName = params['game_name'];
+				this.getQuestionsForGame(this.gameName);		
+			});
 		}
 
 		ngAfterViewInit(): void {
@@ -54,10 +61,6 @@ import {
 				//init the collapsibles after game change.
 				$('.collapsible').collapsible();	
 			})
-			this.gameNameParam = this.route.params.subscribe(params => {
-				this.gameName = params['game_name'];
-				this.getQuestionsForGame(this.gameName);		
-			});
 		}
 
 		getQuestionsForGame(gameName: string){
@@ -71,11 +74,6 @@ import {
 				this.titleService.setTitle("JavaScript - " + this.gameName);
 				this.metaService.updateTag({ name: "description", content: this.questions[0].game_long_description})
 			});
-
-			this.gamesService.getGamesNames()
-			.then((res) => {
-				this.gamesNames = res.json().games;
-			})
 		}
 
 		/**
