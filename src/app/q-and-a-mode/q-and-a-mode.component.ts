@@ -45,14 +45,11 @@ import {
 
 		ngOnInit() {
 			this.spinnerService.show();
-			this.gamesService.getGamesNames()
-			.then((res) => {
-				this.gamesNames = res.json().games;
-			})
 
 			this.gameNameParam = this.route.params.subscribe(params => {
 				this.gameName = params['game_name'];
-				this.getQuestionsForGame(this.gameName);		
+				this.getQuestionsForGame(this.gameName);
+				this.getGamesNames();		
 			});
 		}
 
@@ -60,6 +57,13 @@ import {
 			this.quesCol.changes.subscribe(t => {
 				//init the collapsibles after game change.
 				$('.collapsible').collapsible();	
+			})
+		}
+
+		getGamesNames() {
+			this.gamesService.getGamesNames()
+			.then((res) => {
+				this.gamesNames = res.json().games;
 			})
 		}
 
