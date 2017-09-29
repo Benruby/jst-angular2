@@ -23,7 +23,7 @@ import {
 	})
 	export class QAndAModeComponent implements OnInit, AfterViewInit, OnDestroy {
 
-		private questions: any[] = [];
+		questions: any[] = [];
 		gamesNames: any[] = [];
 		private gameNameParam: any;
 		gameName: any;
