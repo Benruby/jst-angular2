@@ -84,4 +84,8 @@ export class AuthService {
       })
   }
 
+  isUserData(){
+    return this.userData;
+  }
+
 }

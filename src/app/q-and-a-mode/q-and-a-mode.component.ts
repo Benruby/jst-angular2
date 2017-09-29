@@ -23,7 +23,7 @@ import {
 	})
 	export class QAndAModeComponent implements OnInit, AfterViewInit, OnDestroy {
 
-		questions: any[] = [];
+		private questions: any[] = [];
 		gamesNames: any[] = [];
 		private gameNameParam: any;
 		gameName: any;
@@ -71,8 +71,8 @@ import {
 				this.selectGameDialog.closeDialog();
 				this.spinnerService.hide();
 			}).then(() => {
-				this.titleService.setTitle("JavaScript - " + this.gameName);
-				this.metaService.updateTag({ name: "description", content: this.questions[0].game_long_description})
+				this.titleService.setTitle("Web Questions - " + this.gameName);
+				this.metaService.updateTag({ name: "description", content: this.questions[0].game_long_description});
 			});
 		}
 

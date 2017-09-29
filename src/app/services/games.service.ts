@@ -71,4 +71,10 @@ export class GamesService {
 	 	.then(response => response);
 	 }
 
+	 getGameSubjects() {
+	 	return this.authService.get('game_subjects')
+	 	.toPromise()
+	 	.then(response => response);
+	 }
+
 	}

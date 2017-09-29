@@ -6,6 +6,7 @@ import {Router} from '@angular/router';
 import { Utils } from '../Utils/utils';
 import { globals } from 'environments/environment';
 import { SpinnerService } from 'app/components/spinner/spinner.service';
+import { Title, Meta } from '@angular/platform-browser';
 
 
 @Component({
@@ -23,10 +24,14 @@ export class HomeComponent implements OnInit {
 		public authService:AuthService,
 		private gamesService:GamesService,
 		private router:Router,
-		private spinnerService: SpinnerService) { }
+		private spinnerService: SpinnerService,
+		private metaService: Meta,
+		private titleService: Title) { }
 
 	ngOnInit() {
 		this.spinnerService.show();
+		this.titleService.setTitle("Web Question - JavaScript, HTML and CSS games.");
+		this.metaService.updateTag({ name: "description", content:"Web Questions - A resource for questions in JavaScript, HTML and CSS. Test your Web Development knowledge and skills." });
 		this.getGames();
 		this.spinnerService.hide();
 	}
@@ -60,5 +65,9 @@ export class HomeComponent implements OnInit {
 				this.router.navigate(['/']);
 			})
 		.then(()=> this.spinnerService.show());
+	}
+
+	isUserData(){
+		return this.authService.isUserData();
 	}
 }

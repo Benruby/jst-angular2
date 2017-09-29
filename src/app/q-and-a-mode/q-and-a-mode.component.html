@@ -19,18 +19,19 @@
 	<h5 class="gamesSideSectionHeader">Questions
 		<a (click)="presentSelectGameDialog()" class="selectGameMobileLink float-right pointer">Select a Game</a>
 	</h5>
-	<div #questionsCollpsibles *ngFor="let q of questions; last as isLast">
-		<ul class="collapsible" data-collapsible="accordion"
-		itemscope
-		itemtype="http://schema.org/Question"
-		>
+	<section 
+	#questionsCollpsibles 
+	*ngFor="let q of questions; last as isLast"
+	itemscope
+	itemtype="http://schema.org/Question">
+	<ul class="collapsible" data-collapsible="accordion">
 		<li>
 			<div class="collapsible-header">
 				<div>
 					<i class="material-icons">help</i>
 
 					<span [innerHtml]="q.body" 
-					itemprop="text"
+					itemprop="name text"
 					></span>
 				</div>
 			</div>
@@ -44,14 +45,19 @@
 				<p class="innerHeader">
 					explanation
 				</p>
+				<div
+				itemprop="suggestedAnswer"
+				itemscope
+				itemtype="http://schema.org/Answer">
 				<span
 				[innerHtml]="q.answer_explanation"
 				itemprop="text"
-				itemprop="suggestedAnswer" itemscope itemtype="http://schema.org/Answer"></span>
+				></span>
 			</div>
-		</li>
-	</ul>
-</div>
+		</div>
+	</li>
+</ul>
+</section>
 </div>
 </div>
 

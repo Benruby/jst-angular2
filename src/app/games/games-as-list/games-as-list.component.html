@@ -1,0 +1,24 @@
+<div>
+	<h3 class="header-medium">All Games</h3>
+</div>
+
+<div 
+ *ngFor="let subject of gameSubjects"
+>
+<div>
+	{{subject.subject_name}}
+</div>
+<div>
+	<ul>
+		<li *ngFor="let game of subject.subject_games"
+		class="hoverable pointer padding-10 hover-radius-small hover-font-size-enlarge" >
+		<a
+		[routerLink]="['/questions/' + game.name]"
+		 
+		class="nested-font-size-enlarge">
+				{{game.name}} <span>- {{game.description}}</span>
+			</a>
+		</li>
+	</ul>
+</div>
+</div>

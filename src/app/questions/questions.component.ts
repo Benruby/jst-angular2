@@ -13,7 +13,8 @@ import { AnonUserService } from 'app/services/anon-user.service';
 import { ConfigService } from 'app/config/config';
 import { WindowRef } from 'app/services/windowRef/window-ref';
 import { SpinnerService } from 'app/components/spinner/spinner.service';
-import { Title } from '@angular/platform-browser';
+import { Title, Meta } from '@angular/platform-browser';
+import { GamesService } from '../services/games.service';
 declare var $ :any;
 
 @Component({
@@ -53,16 +54,20 @@ export class QuestionsComponent implements OnInit, DoCheck, OnDestroy {
 		private config: ConfigService,
 		private windowRef: WindowRef,
 		private spinnerService: SpinnerService,
-		private titleService: Title) { }
+		private titleService: Title,
+		private metaService: Meta,
+		private gamesService:GamesService) { }
 
 	ngOnInit() {
 		this.spinnerService.show();
-		this.getQuestion();
 		this.counter = +localStorage.getItem('q_num') || 1;
 		this.sub = this.route.params.subscribe(params => {
 			this.gameName = params['game_name']; 
-			this.titleService.setTitle("JavaScript - " + this.gameName);
+			this.metaService.updateTag({ name: "description", content: "Answer these short questions in JavaScript, HTML or CSS and test your Web Development skills. "})
+			this.titleService.setTitle("Web Questions - " + this.gameName);
 		});
+		this.startGame();
+		this.getQuestion();
 		this.windowRef.nativeWindow.scrollTo(0,0);
 		this.spinnerService.hide();
 	}
@@ -82,6 +87,17 @@ export class QuestionsComponent implements OnInit, DoCheck, OnDestroy {
 				self.markAnswerAsInccorect(el[0].dataset.questionId);
 			}
 		});
+	}
+
+	startGame(){
+		this.gamesService.startGame(this.gameName)
+		.then(
+			res => {
+				if((res.status == 200) && (res.json())){
+				}
+			},
+			err => {
+			});
 	}
 
 	closeSpinnerAndEnableAnswers(){
@@ -164,7 +180,7 @@ export class QuestionsComponent implements OnInit, DoCheck, OnDestroy {
 
 	ngOnDestroy(){
 		localStorage.setItem('q_num', "0");
-		this.titleService.setTitle("Web Questions - Test Your Skills");
+		this.titleService.setTitle("Web Questions - Test Your Skills in JavaScript, HTML and CSS.");
 	}
 	
 }

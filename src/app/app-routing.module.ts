@@ -9,6 +9,7 @@ import { SubmitQuestionComponent } from './components/submit-question/submit-que
 import {AuthGuard} from "./guards/auth.guard";
 import {AnonUserGuard} from "./guards/anon.user.guard";
 import { QAndAModeComponent } from './q-and-a-mode/q-and-a-mode.component';
+import { GamesAsListComponent } from './games/games-as-list/games-as-list.component';
 
 const routes: Routes = [
 {
@@ -24,7 +25,8 @@ const routes: Routes = [
 },
 {
 	path: 'games',
-	component: GamesComponent,
+	// component: GamesComponent,
+	component: GamesAsListComponent,
 	canActivate: [AnonUserGuard]
 	// canActivate: [AuthGuard]
 },
