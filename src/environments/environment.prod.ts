@@ -1,4 +1,4 @@
-export const defaultGame = "Know The Basics";
+export const defaultGame = "Know The Very Basics of JavaScript";
 
 export const globals = {
 	anon_token: localStorage.getItem('anon_user_token'),
