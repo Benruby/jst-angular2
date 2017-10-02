@@ -12,7 +12,9 @@
         "favicon.ico",
         "robots.txt",
         "sitemap.xml",
-        "css.png"
+        "css.png",
+        "styles.css"
+
       ],
       "index": "index.html",
       "main": "main.ts",
@@ -22,10 +24,10 @@
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "app",
       "styles": [
-        "styles.sass",
         "../node_modules/materialize-css/dist/css/materialize.css",
         "../node_modules/font-awesome/css/font-awesome.css",
-        "../src/app/directives/highlight/js.highlight.css"
+        "../src/app/directives/highlight/js.highlight.css",
+        "styles.sass"
 
       ],
       "scripts": [
