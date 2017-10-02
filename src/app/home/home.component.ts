@@ -2,12 +2,13 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import {AuthService} from "../services/auth/auth.service";
 import {AuthDialogComponent} from "../auth-dialog/auth-dialog.component";
 import { GamesService } from '../services/games.service';
-import {Router} from '@angular/router';
+import { Router } from '@angular/router';
 import { Utils } from '../Utils/utils';
 import { globals } from 'environments/environment';
 import { SpinnerService } from 'app/components/spinner/spinner.service';
 import { Title, Meta } from '@angular/platform-browser';
 import { defaultGame } from 'environments/environment';
+import { WindowRef } from 'app/services/windowRef/window-ref';
 
 
 @Component({
@@ -28,9 +29,11 @@ export class HomeComponent implements OnInit {
 		private router:Router,
 		private spinnerService: SpinnerService,
 		private metaService: Meta,
-		private titleService: Title) { }
+		private titleService: Title,
+		private winRef: WindowRef) { }
 
 	ngOnInit() {
+		this.winRef.nativeWindow.prerenderReady = false;
 		this.spinnerService.show();
 		this.titleService.setTitle("Web Question - JavaScript, HTML and CSS games.");
 		this.metaService.updateTag({ name: "description", content:"Web Questions - A resource for questions in JavaScript, HTML and CSS. Test your Web Development knowledge and skills." });
@@ -48,6 +51,7 @@ export class HomeComponent implements OnInit {
 			res => {
 				if(res.status == 200){
 					this.games = res.json().games;
+					this.winRef.nativeWindow.prerenderReady = true;
 				}
 			},
 			err => {
