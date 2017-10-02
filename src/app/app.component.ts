@@ -20,11 +20,11 @@ export class AppComponent implements OnInit {
 		private metaService: Meta,
 		private winRef: WindowRef
 		){
+		this.winRef.nativeWindow.prerenderReady = false;
 		this.authToken.init(environment.token_auth_config);
 	}
 
 	ngOnInit() {
-		this.winRef.nativeWindow.prerenderReady = false;
 		this.metaService.updateTag({ httpEquiv: "Content-Type", content: "text/html; charset=utf-8"});
 	}
 
