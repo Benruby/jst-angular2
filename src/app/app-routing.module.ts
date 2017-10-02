@@ -15,12 +15,6 @@ const routes: Routes = [
 {
 	path: '',
 	component: HomeComponent,
-	pathMatch: 'full',
-	canActivate: [AnonUserGuard]
-},
-{
-	path: 'home',
-	component: HomeComponent,
 	canActivate: [AnonUserGuard]
 },
 {
@@ -52,6 +46,11 @@ const routes: Routes = [
 {
 	path: 'learn/:game_name',
 	component: QAndAModeComponent
+},
+{ 
+	path: '**', 
+	redirectTo: '/',
+	pathMatch: 'full' 
 }
 ];
 
