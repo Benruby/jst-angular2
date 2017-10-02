@@ -7,6 +7,7 @@ import { Utils } from '../Utils/utils';
 import { globals } from 'environments/environment';
 import { SpinnerService } from 'app/components/spinner/spinner.service';
 import { Title, Meta } from '@angular/platform-browser';
+import { defaultGame } from 'environments/environment';
 
 
 @Component({
@@ -19,6 +20,7 @@ export class HomeComponent implements OnInit {
 	@ViewChild('authDialog') authDialog: AuthDialogComponent;
 
 	games: any;
+	defaultGame: string = defaultGame;
 
 	constructor(
 		public authService:AuthService,

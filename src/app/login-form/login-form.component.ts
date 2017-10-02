@@ -52,15 +52,15 @@ export class LoginFormComponent implements OnInit {
     }
     this.showResetSuccess();
     // this.onPasswordReset.emit({requestSent: true});
-    // this.authService.resetPassword("benloyapp@gmail.com").subscribe(
-    //     res => {
-    //       if(res.status == 200){
-    //       }
-    //     },
-    //     err => {
-    //       console.log('err:', err);
-    //     }
-    // );
+    debugger;
+    this.authService.resetPassword(this.signInUser.email).subscribe(
+        res => {
+          if(res.status == 200){
+          }
+        },
+        err => {
+        }
+    );
   }
 
   showResetSuccess() {

@@ -4,7 +4,7 @@
 // The list of which env maps to which file can be found in `.angular-cli.json`.
 
 
-export const defaultGame = "javascript";
+export const defaultGame = "css";
 
 export const globals = {
 	anon_token: localStorage.getItem('anon_user_token'),
