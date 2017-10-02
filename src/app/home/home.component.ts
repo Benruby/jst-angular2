@@ -33,7 +33,6 @@ export class HomeComponent implements OnInit {
 		private winRef: WindowRef) { }
 
 	ngOnInit() {
-		this.winRef.nativeWindow.prerenderReady = false;
 		this.spinnerService.show();
 		this.titleService.setTitle("Web Question - JavaScript, HTML and CSS games.");
 		this.metaService.updateTag({ name: "description", content:"Web Questions - A resource for questions in JavaScript, HTML and CSS. Test your Web Development knowledge and skills." });
