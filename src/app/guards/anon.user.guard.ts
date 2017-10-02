@@ -15,7 +15,7 @@ export class AnonUserGuard implements CanActivate {
     private router:Router,
     private anonService: AnonUserService,
     private winRef: WindowRef){
-    this.winRef.nativeWindow.prerenderReady = false;
+    // this.winRef.nativeWindow.prerenderReady = false;
   }
 
   canActivate(route: ActivatedRouteSnapshot) : Observable<boolean>|Promise<boolean>|boolean {
