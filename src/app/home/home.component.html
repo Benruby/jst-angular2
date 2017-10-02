@@ -33,15 +33,15 @@
 		</div>
 	</div>
 </div>
-<div class="sideSection medium-screen-item right">
-	<div class="content-mini content-up col s10 bckgcolor-white right padding-20">
+<div class="sideSection medium-screen-item">
+	<div class="content-mini content-up bckgcolor-white right padding-20">
 		<p class="header-small center-align common-color">Welcome to the Web Questions.</p>
 		<p class="common-color">Playing is free, no need to sign up, but if you 
 			want to save your result, sign up easily here.</p>
 			<p>Feel like reading? you can always view questions in <a [routerLink]="['/learn', defaultGame]">Free Reading mode</a>.</p>
 		</div>
 
-		<div class="content-mini content-down col s10 bckgcolor-white right padding-20">
+		<div class="content-mini content-down bckgcolor-white right padding-20">
 			<p class="common-color">
 				Web Questions - A resource for developers and web enthusiasts, containing short question in various subjects, all related to modern Web development. 
 			</p>
@@ -60,5 +60,5 @@
 <app-auth-dialog #authDialog ></app-auth-dialog>
 
 <app-bring-to-top
-[scrollInterval]="40"
+	[scrollInterval]="40"
 ></app-bring-to-top>

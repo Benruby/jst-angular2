@@ -45,7 +45,7 @@ export class BringToTopComponent implements OnInit {
 
 
 	showButtonOnPage(){
-		if (document.body.scrollTop > 80) {
+		if (document.scrollingElement.scrollTop > 80) {
 			this.showButton = true;
 		} else {
 			this.showButton = false;

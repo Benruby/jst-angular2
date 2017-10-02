@@ -120,7 +120,11 @@
 .sideSection
 	@media screen and (min-width: $small-size)
 		width: 33%;
-	min-height: $min-main-height;	
+		float: right;
+	// min-height: $min-main-height;	
+	@media screen and (max-width: $small-size)
+		width: 100%;
+		display: block;
 
 .align-element-right
 	margin-left: auto;
@@ -145,3 +149,4 @@
 		-moz-transition: font-size 0.2s ease;
 		-o-transition: font-size 0.2s ease;
 		-ms-transition: font-size 0.2s ease;
+
