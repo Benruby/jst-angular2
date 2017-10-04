@@ -10,7 +10,7 @@ import {
 	OnDestroy } from '@angular/core';
 	import { ActivatedRoute } from '@angular/router';
 	import { QuestionsService } from '../services/questions.service';
-	// import { GamesService } from '../services/games.service';
+	import { GamesService } from '../services/games.service';
 	import { SelectGameComponent } from './select-game/select-game.component';
 	import { SpinnerService } from '../components/spinner/spinner.service';
 	import { Title, Meta } from '@angular/platform-browser';
@@ -26,7 +26,7 @@ import {
 	export class QAndAModeComponent implements OnInit, AfterViewInit, OnDestroy {
 
 		questions: any[] = [];
-		// gamesNames: any[] = [];
+		gamesNames: any[] = [];
 		private gameNameParam: any;
 		gameName: any;
 
@@ -37,7 +37,7 @@ import {
 
 		constructor(
 			private questionsService: QuestionsService,
-			// private gamesService: GamesService,
+			private gamesService: GamesService,
 			private route: ActivatedRoute,
 			private spinnerService: SpinnerService,
 			private metaService: Meta,
@@ -48,14 +48,14 @@ import {
 
 		ngOnInit() {
 			this.spinnerService.show();
-			// this.gamesService.getGamesNames()
-			// .then((res) => {
-				// 	this.gamesNames = res.json().games;
-				// }).then(() => {
-					// 	this.titleService.setTitle("Web Questions - " + this.gameName);
-					// 	this.winRef.nativeWindow.prerenderReady = true
-					// }
-					// )
+			this.gamesService.getGamesNames()
+			.then((res) => {
+					this.gamesNames = res.json().games;
+				}).then(() => {
+						this.titleService.setTitle("Web Questions - " + this.gameName);
+						// this.winRef.nativeWindow.prerenderReady = true
+					}
+					)
 
 					this.gameNameParam = this.route.params.subscribe(params => {
 						this.gameName = params['game_name'];

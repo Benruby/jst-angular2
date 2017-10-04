@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { GamesService } from '../../services/games.service';
 
 @Component({
@@ -9,19 +9,20 @@ import { GamesService } from '../../services/games.service';
 export class SelectGameDesktopComponent implements OnInit {
 
 	gamesNames: any[] = [];
+	@Input() gamesNamesList: any;
 
 	constructor(
 		private gamesService: GamesService
 		) { }
 
 	ngOnInit() {
-		this.gamesService.getGamesNames()
-		.then((res) => {
-			this.gamesNames = res.json().games;
-		}).then(() => {
-			// this.winRef.nativeWindow.prerenderReady = true
-		}
-		)
+		// this.gamesService.getGamesNames()
+		// .then((res) => {
+		// 	this.gamesNames = res.json().games;
+		// }).then(() => {
+		// 	// this.winRef.nativeWindow.prerenderReady = true
+		// }
+		// )
 	}
 
 }
