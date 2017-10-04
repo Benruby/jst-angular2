@@ -14,8 +14,13 @@ import { GamesAsListComponent } from './games/games-as-list/games-as-list.compon
 const routes: Routes = [
 {
 	path: '',
+	redirectTo: 'home',
+	pathMatch: 'full'
+},
+{ 
+	path: 'home', 
 	component: HomeComponent,
-	canActivate: [AnonUserGuard]
+	canActivate: [AnonUserGuard] 
 },
 {
 	path: 'games',
