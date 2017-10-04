@@ -4,6 +4,7 @@ import {environment} from "../environments/environment";
 import { Utils } from './Utils/utils';
 import { Title, Meta } from '@angular/platform-browser';
 import { WindowRef } from 'app/services/windowRef/window-ref';
+import { Router, NavigationEnd } from '@angular/router';
 
 @Component({
 	selector: 'app-root',
@@ -18,8 +19,14 @@ export class AppComponent implements OnInit {
 	constructor(
 		private authToken: Angular2TokenService,
 		private metaService: Meta,
-		private winRef: WindowRef
+		private winRef: WindowRef,
+		private router: Router
 		){
+		router.events.subscribe((event: any) => {
+			if(event instanceof NavigationEnd) {
+				winRef.nativeWindow.prerenderReady = true;
+			}
+		});
 	}
 
 	ngOnInit() {
