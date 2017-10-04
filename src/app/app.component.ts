@@ -20,7 +20,7 @@ export class AppComponent implements OnInit {
 		private metaService: Meta,
 		private winRef: WindowRef
 		){
-		// this.winRef.nativeWindow.prerenderReady = false;
+		this.winRef.nativeWindow.prerenderReady = false;
 		this.authToken.init(environment.token_auth_config);
 	}
 

@@ -50,7 +50,7 @@ export class HomeComponent implements OnInit {
 			res => {
 				if(res.status == 200){
 					this.games = res.json().games;
-					// this.winRef.nativeWindow.prerenderReady = true;
+					this.winRef.nativeWindow.prerenderReady = true;
 				}
 			},
 			err => {
