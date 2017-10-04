@@ -27,5 +27,4 @@ export class AppComponent implements OnInit {
 	ngOnInit() {
 		this.metaService.updateTag({ httpEquiv: "Content-Type", content: "text/html; charset=utf-8"});
 	}
-
 }

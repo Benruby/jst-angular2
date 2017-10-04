@@ -40,6 +40,10 @@ export class HomeComponent implements OnInit {
 		this.spinnerService.hide();
 	}
 
+	ngAfterViewInit(){
+		this.winRef.nativeWindow.prerenderReady = true;
+	}
+
 	presentAuthDialog(mode: 'login'){
 		this.authDialog.openDialog(mode);
 	}
