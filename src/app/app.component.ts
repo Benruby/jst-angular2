@@ -22,6 +22,8 @@ export class AppComponent implements OnInit {
 		private winRef: WindowRef,
 		private router: Router
 		){
+		this.authToken.init(environment.token_auth_config);
+		this.metaService.updateTag({ httpEquiv: "Content-Type", content: "text/html; charset=utf-8"});
 		router.events.subscribe((event: any) => {
 			if(event instanceof NavigationEnd) {
 				winRef.nativeWindow.prerenderReady = true;
@@ -30,8 +32,7 @@ export class AppComponent implements OnInit {
 	}
 
 	ngOnInit() {
-		this.winRef.nativeWindow.prerenderReady = false;
-		this.authToken.init(environment.token_auth_config);
-		this.metaService.updateTag({ httpEquiv: "Content-Type", content: "text/html; charset=utf-8"});
+
 	}
+
 }
