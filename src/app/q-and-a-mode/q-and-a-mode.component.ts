@@ -12,9 +12,9 @@ import {
 	import { QuestionsService } from '../services/questions.service';
 	// import { GamesService } from '../services/games.service';
 	import { SelectGameComponent } from './select-game/select-game.component';
-	import { SpinnerService } from 'app/components/spinner/spinner.service';
+	import { SpinnerService } from '../components/spinner/spinner.service';
 	import { Title, Meta } from '@angular/platform-browser';
-	import { WindowRef } from 'app/services/windowRef/window-ref';
+	// import { WindowRef } from 'app/services/windowRef/window-ref';
 
 	declare var $ :any;
 
@@ -41,8 +41,8 @@ import {
 			private route: ActivatedRoute,
 			private spinnerService: SpinnerService,
 			private metaService: Meta,
-			private titleService: Title,
-			private winRef: WindowRef
+			private titleService: Title
+			// private winRef: WindowRef
 			) { }
 
 
