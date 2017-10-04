@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { GamesService } from '../../services/games.service';
+import { WindowRef } from 'app/services/windowRef/window-ref';
 
 @Component({
 	selector: 'app-select-game-desktop',
@@ -12,17 +13,24 @@ export class SelectGameDesktopComponent implements OnInit {
 	@Input() gamesNamesList: any;
 
 	constructor(
-		private gamesService: GamesService
+		private gamesService: GamesService,
+		private winRef: WindowRef
+
 		) { }
 
 	ngOnInit() {
 		// this.gamesService.getGamesNames()
 		// .then((res) => {
-		// 	this.gamesNames = res.json().games;
-		// }).then(() => {
-		// 	// this.winRef.nativeWindow.prerenderReady = true
-		// }
-		// )
-	}
+			// 	this.gamesNames = res.json().games;
+			// }).then(() => {
+				// 	// this.winRef.nativeWindow.prerenderReady = true
+				// }
+				// )
+			}
 
-}
+			ngAfterViewInit(): void {
+				// this.winRef.nativeWindow.prerenderReady = true
+				
+			}
+
+		}
