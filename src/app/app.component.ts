@@ -22,17 +22,17 @@ export class AppComponent implements OnInit {
 		private winRef: WindowRef,
 		private router: Router
 		){
-		this.authToken.init(environment.token_auth_config);
-		this.metaService.updateTag({ httpEquiv: "Content-Type", content: "text/html; charset=utf-8"});
-		router.events.subscribe((event: any) => {
-			if(event instanceof NavigationEnd) {
-				winRef.nativeWindow.prerenderReady = true;
-			}
-		});
+
+		// router.events.subscribe((event: any) => {
+		// 	if(event instanceof NavigationEnd) {
+		// 		winRef.nativeWindow.prerenderReady = true;
+		// 	}
+		// });
 	}
 
 	ngOnInit() {
-
+		this.authToken.init(environment.token_auth_config);
+		this.metaService.updateTag({ httpEquiv: "Content-Type", content: "text/html; charset=utf-8"});
 	}
 
 }

@@ -14,6 +14,8 @@ import {
 	import { SelectGameComponent } from './select-game/select-game.component';
 	import { SpinnerService } from 'app/components/spinner/spinner.service';
 	import { Title, Meta } from '@angular/platform-browser';
+	import { WindowRef } from 'app/services/windowRef/window-ref';
+
 	declare var $ :any;
 
 	@Component({
@@ -39,7 +41,8 @@ import {
 			private route: ActivatedRoute,
 			private spinnerService: SpinnerService,
 			private metaService: Meta,
-			private titleService: Title
+			private titleService: Title,
+			private winRef: WindowRef
 			) { }
 
 
@@ -48,7 +51,9 @@ import {
 			this.gamesService.getGamesNames()
 			.then((res) => {
 				this.gamesNames = res.json().games;
-			})
+			}).then(() =>
+				this.winRef.nativeWindow.prerenderReady = true
+			)
 
 			this.gameNameParam = this.route.params.subscribe(params => {
 				this.gameName = params['game_name'];
