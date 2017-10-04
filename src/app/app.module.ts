@@ -55,6 +55,7 @@ import { MessageSystemService } from './components/message-system/message-system
 import { QAndAModeComponent } from './q-and-a-mode/q-and-a-mode.component';
 import { SelectGameComponent } from './q-and-a-mode/select-game/select-game.component';
 import { GamesAsListComponent } from './games/games-as-list/games-as-list.component';
+import { SelectGameDesktopComponent } from './q-and-a-mode/select-game-desktop/select-game-desktop.component';
 
 
 @NgModule({
@@ -81,7 +82,8 @@ import { GamesAsListComponent } from './games/games-as-list/games-as-list.compon
 	MessageSystemComponent,
 	QAndAModeComponent,
 	SelectGameComponent,
-	GamesAsListComponent
+	GamesAsListComponent,
+	SelectGameDesktopComponent
 	],
 	imports: [
 	BrowserModule,

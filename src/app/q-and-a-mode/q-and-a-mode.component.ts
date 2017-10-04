@@ -10,7 +10,7 @@ import {
 	OnDestroy } from '@angular/core';
 	import { ActivatedRoute } from '@angular/router';
 	import { QuestionsService } from '../services/questions.service';
-	import { GamesService } from '../services/games.service';
+	// import { GamesService } from '../services/games.service';
 	import { SelectGameComponent } from './select-game/select-game.component';
 	import { SpinnerService } from 'app/components/spinner/spinner.service';
 	import { Title, Meta } from '@angular/platform-browser';
@@ -26,7 +26,7 @@ import {
 	export class QAndAModeComponent implements OnInit, AfterViewInit, OnDestroy {
 
 		questions: any[] = [];
-		gamesNames: any[] = [];
+		// gamesNames: any[] = [];
 		private gameNameParam: any;
 		gameName: any;
 
@@ -37,7 +37,7 @@ import {
 
 		constructor(
 			private questionsService: QuestionsService,
-			private gamesService: GamesService,
+			// private gamesService: GamesService,
 			private route: ActivatedRoute,
 			private spinnerService: SpinnerService,
 			private metaService: Meta,
@@ -48,39 +48,40 @@ import {
 
 		ngOnInit() {
 			this.spinnerService.show();
-			this.gamesService.getGamesNames()
-			.then((res) => {
-				this.gamesNames = res.json().games;
-			}).then(() => {
-				this.titleService.setTitle("Web Questions - " + this.gameName);
-				this.winRef.nativeWindow.prerenderReady = true
-			}
-			)
+			// this.gamesService.getGamesNames()
+			// .then((res) => {
+				// 	this.gamesNames = res.json().games;
+				// }).then(() => {
+					// 	this.titleService.setTitle("Web Questions - " + this.gameName);
+					// 	this.winRef.nativeWindow.prerenderReady = true
+					// }
+					// )
 
-			this.gameNameParam = this.route.params.subscribe(params => {
-				this.gameName = params['game_name'];
-				this.getQuestionsForGame(this.gameName);		
-			});
-		}
+					this.gameNameParam = this.route.params.subscribe(params => {
+						this.gameName = params['game_name'];
+						this.getQuestionsForGame(this.gameName);		
+					});
+				}
 
-		ngAfterViewInit(): void {
-			this.quesCol.changes.subscribe(t => {
-				//init the collapsibles after game change.
-				$('.collapsible').collapsible();	
-			})
-		}
+				ngAfterViewInit(): void {
+					this.quesCol.changes.subscribe(t => {
+						//init the collapsibles after game change.
+						$('.collapsible').collapsible();	
+					})
+				}
 
-		getQuestionsForGame(gameName: string){
-			this.spinnerService.show();
-			this.questionsService.getGameQuestions(gameName)
-			.then((res)=> {
-				this.questions = res.json().questions;
-				this.selectGameDialog.closeDialog();
-				this.spinnerService.hide();
-			}).then(() => {
-				this.metaService.updateTag({ name: "description", content: this.questions[0].game_long_description});
-			});
-		}
+				getQuestionsForGame(gameName: string){
+					this.spinnerService.show();
+					this.questionsService.getGameQuestions(gameName)
+					.then((res)=> {
+						this.questions = res.json().questions;
+						this.selectGameDialog.closeDialog();
+						this.spinnerService.hide();
+					}).then(() => {
+						this.titleService.setTitle("Web Questions - " + this.gameName);
+						this.metaService.updateTag({ name: "description", content: this.questions[0].game_long_description});
+					});
+				}
 
 		/**
 		 * the method presents dialog for the user to select a game.
