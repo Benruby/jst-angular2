@@ -1,5 +1,5 @@
 <ul class="game-name-list">
-	<li *ngFor="let g of gamesNames"
+	<li *ngFor="let g of gamesNamesList"
 	class="game-name-item pointer"
 	[routerLink]="['/learn', g.name]">
 	{{g.name}}
