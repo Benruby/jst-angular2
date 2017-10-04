@@ -51,8 +51,10 @@ import {
 			this.gamesService.getGamesNames()
 			.then((res) => {
 				this.gamesNames = res.json().games;
-			}).then(() =>
+			}).then(() => {
+				this.titleService.setTitle("Web Questions - " + this.gameName);
 				this.winRef.nativeWindow.prerenderReady = true
+			}
 			)
 
 			this.gameNameParam = this.route.params.subscribe(params => {
@@ -76,7 +78,6 @@ import {
 				this.selectGameDialog.closeDialog();
 				this.spinnerService.hide();
 			}).then(() => {
-				this.titleService.setTitle("Web Questions - " + this.gameName);
 				this.metaService.updateTag({ name: "description", content: this.questions[0].game_long_description});
 			});
 		}
