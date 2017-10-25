@@ -12,12 +12,6 @@ const forceSSL = function() {
   }
 }
 
-
-// Instruct the app
-// to use the forceSSL
-// middleware
-// 
-// 
 app.use(forceSSL());
 app.use(require('prerender-node').set('prerenderToken', 'nLDTqmJK87BXuSIBIs4x'));
 app.use(require('prerender-node').set('protocol', 'https'));
@@ -60,3 +54,5 @@ app.all('/*', function (req, res, next) {
 
 // Heroku port
 app.listen(process.env.PORT || 8080);
+
+These polyfills must be the first thing imported in node
